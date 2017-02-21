@@ -25,19 +25,24 @@ public class Iris {
 					+ " Expected number of fields = 5 - delimited by " + delimiter);
 			return;
 		}
-		
+
 		// parse the string into the individual fields
-		try{
-			petalLength = Double.parseDouble(fields[0]);
-			petalLength = Double.parseDouble(fields[1]);
+		try {
+			sepalLength = Double.parseDouble(fields[0]);
+			sepalWidth = Double.parseDouble(fields[1]);
 			petalLength = Double.parseDouble(fields[2]);
-			petalLength = Double.parseDouble(fields[3]);
+			petalWidth = Double.parseDouble(fields[3]);
 			flowerType = fields[4];
-		} catch(NumberFormatException nfe){
+		} catch (NumberFormatException nfe) {
 			System.out.println("String passed in is corrupted! " + content
 					+ " Expected number of fields = 5 - delimited by " + delimiter);
 			return;
 		}
+	}
+
+	public String toString() {
+		return "sepalLen" + "gth = " + sepalLength + " sepalWidth = " + sepalWidth + " petalLength = " + petalLength
+				+ "petalWidth = " + petalWidth + " Flower = " + flowerType;
 	}
 
 	public String getFlowerType() {
