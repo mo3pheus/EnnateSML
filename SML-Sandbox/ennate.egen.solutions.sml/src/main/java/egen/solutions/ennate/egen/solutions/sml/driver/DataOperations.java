@@ -124,7 +124,9 @@ public class DataOperations {
 		gd.buildModels();
 
 		System.out.println("Model for class = " + gd.getModels().get(0).getClassId());
+		System.out.println("Mean values = ");
 		System.out.println(gd.getModels().get(0).getMean().toString());
+		System.out.println("StdDeviation values = ");
 		System.out.println(gd.getModels().get(0).getStdDev().toString());
 	}
 
