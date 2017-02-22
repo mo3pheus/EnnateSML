@@ -1,7 +1,9 @@
 package egen.solutions.ennate.egen.solutions.sml.driver;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,9 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+import ennate.egen.solutions.sml.domain.Data;
+import ennate.egen.solutions.sml.domain.DataModel;
 import ennate.egen.solutions.sml.domain.GenericData;
-import ennate.egen.solutions.sml.domain.GenericData.Data;
-import ennate.egen.solutions.sml.domain.GenericData.DataModel;
 import ennate.egen.solutions.sml.domain.Result;
 
 public class DataOperations {
@@ -26,6 +28,30 @@ public class DataOperations {
 		trainingSet = new ArrayList<Data>();
 		testingSet = new ArrayList<Data>();
 		totalDataset = new ArrayList<Data>();
+	}
+	
+	public ArrayList<Data> loadData(File file, String delimiter, int numberOfFields) throws IOException {
+		ArrayList<Data> data = new ArrayList<Data>();
+		if (file == null) {
+			System.out.println(" File invalid! ");
+			return null;
+		}
+
+		this.numberOfFields = numberOfFields;
+
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			try {
+				Data temp = new Data(line, delimiter, numberOfFields);
+				data.add(temp);
+			} catch (Exception e) {
+
+			}
+		}
+
+		br.close();
+		return data;
 	}
 
 	public void loadArrayData(String location, int numFields) {

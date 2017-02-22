@@ -1,6 +1,17 @@
 package egen.solutions.ennate.egen.solutions.sml.driver;
 
 public class IrisDriver {
+	
+	/*
+	 * Ennate Labs - modernize the legacy software.
+	 * 
+	 * microservices - speed and scalability. 
+	 * 4 packages - diagnostic package, productize the service offering, 30 second pitch.
+	 * IT services company. 
+	 * 
+	 * Design sprint - is it a viable idea - beer recommendation algorithm.
+	 * 
+	 */
 
 	public static void main(String[] args) {
 		DataOperations irisProblem = new DataOperations();
@@ -14,14 +25,14 @@ public class IrisDriver {
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " %");
 	}
 
-	public static void main2(String[] args) {
+	public static void main1(String[] args) {
 		DataOperations bloodProblem = new DataOperations();
 
 		// Recency (months),Frequency (times),Monetary (c.c. blood),Time
 		// (months),"whether he/she donated blood in March 2007"
 
 		bloodProblem.loadArrayData("transfusion.data.txt", 4);
-		bloodProblem.populateTrainTestSets(89);
+		bloodProblem.populateTrainTestSets(92);
 		
 		System.out.println(" Number of training samples = " + bloodProblem.getTrainingData().size());
 		System.out.println(" Number of testing samples = " + bloodProblem.getTestingData().size());
