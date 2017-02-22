@@ -37,6 +37,12 @@ public class DataModel {
 		stdDev = new Data(numberOfFields);
 		classId = "";
 	}
+	
+	public String toString(){
+		return " Number of Fields = " + numberOfFields 
+				+ " Mean Vector => " + mean.toString()
+				+ " StdDev Vector => " + stdDev.toString();
+	}
 
 	/**
 	 * This constructor takes a list of samples as data points and builds a
@@ -65,6 +71,10 @@ public class DataModel {
 
 		// compute the aggregate
 		Double[] mFields = new Double[numberOfFields];
+		for(int j = 0; j < numberOfFields; j++){
+			mFields[j] = 0.0d;
+		}
+		
 		for (int i = 0; i < data.size(); i++) {
 			Data sample = data.get(i);
 			Double[] fields = sample.getFields();
@@ -81,6 +91,10 @@ public class DataModel {
 
 		// compute aggregate difference from mean squared
 		Double[] stdDevFields = new Double[this.numberOfFields];
+		for(int j = 0; j < numberOfFields; j++){
+			stdDevFields[j] = 0.0d;
+		}
+		
 		for (int i = 0; i < data.size(); i++) {
 			Data sample = data.get(i);
 			Double[] fields = sample.getFields();
