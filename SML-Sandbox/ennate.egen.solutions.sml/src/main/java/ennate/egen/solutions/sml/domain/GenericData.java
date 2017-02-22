@@ -115,12 +115,12 @@ public class GenericData {
 	public static double getDistance(Data sample1, Data sample2) throws Exception {
 		double distance = 0.0d;
 
-		if (sample1.fields.length != sample2.fields.length) {
+		if (sample1.getFields().length != sample2.getFields().length) {
 			throw new Exception("Two samples must be of equal dimensions!");
 		}
 
-		for (int i = 0; i < sample1.fields.length; i++) {
-			distance += ((sample1.fields[i] - sample2.fields[i]) * (sample1.fields[i] - sample2.fields[i]));
+		for (int i = 0; i < sample1.getFields().length; i++) {
+			distance += ((sample1.getFields()[i] - sample2.getFields()[i]) * (sample1.getFields()[i] - sample2.getFields()[i]));
 		}
 		return Math.sqrt(distance);
 	}
@@ -134,13 +134,13 @@ public class GenericData {
 		for (int i = 0; i < classIds.length; i++) {
 			ArrayList<Data> temp = new ArrayList<Data>();
 			for (int j = 0; j < data.size(); j++) {
-				if ((data.get(j) != null) && (data.get(j).classId != null)
-						&& (data.get(j).classId.equals((String) classIds[i]))) {
+				if ((data.get(j) != null) && (data.get(j).getClassId() != null)
+						&& (data.get(j).getClassId().equals((String) classIds[i]))) {
 					temp.add(data.get(j));
 				}
 			}
 
-			modelsTemp.add(new DataModel(temp));
+			modelsTemp.add(new DataModel(temp, numberOfFields));
 		}
 		return modelsTemp;
 	}
