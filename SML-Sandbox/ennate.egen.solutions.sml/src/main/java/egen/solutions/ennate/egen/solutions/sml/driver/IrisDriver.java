@@ -1,14 +1,18 @@
 package egen.solutions.ennate.egen.solutions.sml.driver;
 
 import java.io.IOException;
+import java.util.Map;
 
 import ennate.egen.solutions.sml.domain.ClassificationEngine;
+import ennate.egen.solutions.sml.domain.Clusterer;
+import ennate.egen.solutions.sml.domain.Clusterer.ClusteredPoints;
+import ennate.egen.solutions.sml.domain.Data;
 import ennate.egen.solutions.sml.domain.DataModel;
 
 public class IrisDriver {
 
 	public static void main(String[] args) {
-		DataOperations<ClassificationEngine> irisProblem = new DataOperations<ClassificationEngine>();
+		SanketML irisProblem = new SanketML();
 		try {
 			irisProblem.loadData("iris.data.txt", ",", 4);
 		} catch (IOException e) {
@@ -19,26 +23,41 @@ public class IrisDriver {
 
 		System.out.println(" Number of training samples = " + irisProblem.getTrainingData().size());
 		System.out.println(" Number of testing samples = " + irisProblem.getTestingData().size());
-		
-		
+
 		/*
-		 * This part should be done by the students. Implement your own version of ClassificationEngine
-		 * and compare accuracy you get.
+		 * This part should be done by the students. Implement your own version
+		 * of ClassificationEngine and compare accuracy you get.
 		 * 
-		 * 1. Instantiate the classificationEngine, 
-		 * 2. Report accuracy.
+		 * 1. Instantiate the classificationEngine, 2. Report accuracy.
 		 */
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
-		
-		for(DataModel model:classificationEngine.getModles()){
+
+		for (DataModel model : classificationEngine.getModles()) {
 			System.out.println(model.toString());
 		}
 		irisProblem.setClassificationEngine(classificationEngine);
 
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " %");
+
+		/*
+		 * Implements k-means clustering algorithm
+		 */
+		Clusterer clusterer = new Clusterer();
+		try {
+			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), 3);
+
+			for (Data centroid : result.keySet()) {
+				ClusteredPoints points = result.get(centroid);
+				System.out.println(" Centroid = " + centroid.toString() + " memberSize = " + points.getPoints().size());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Exception in clustering data!");
+		}
 	}
-	
+
 	/*
 	 * public static void main1(String[] args) { DataOperations bloodProblem =
 	 * new DataOperations();
