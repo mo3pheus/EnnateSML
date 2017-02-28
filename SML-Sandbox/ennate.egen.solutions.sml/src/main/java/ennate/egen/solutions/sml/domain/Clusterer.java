@@ -11,6 +11,13 @@ public class Clusterer implements IClusterStuff {
 	public static final double ERR_MARGIN = 0.0001d;
 	public static final int MAX_ITERATIONS = 1000;
 
+	/**
+	 * Class to hold clustered set of points. Contains a list of points and the
+	 * classId they were classified to.
+	 * 
+	 * @author sanketkorgaonkar
+	 *
+	 */
 	public class ClusteredPoints {
 		List<Data> points;
 		String classId;
@@ -29,12 +36,17 @@ public class Clusterer implements IClusterStuff {
 				points.add(sample);
 			}
 		}
-		
-		public List<Data> getPoints(){
+
+		public List<Data> getPoints() {
 			return points;
 		}
 	}
 
+	/**
+	 * This function takes in a list of points and the number of clusters and
+	 * applies k-means clustering algorithm to find n-clusters, it returns the
+	 * result as a map of the <centroid, clusteredPoints>
+	 */
 	public Map<Data, ClusteredPoints> clusterData(List<Data> data, int numClusters) throws Exception {
 		/*
 		 * Sanity Check
@@ -48,7 +60,7 @@ public class Clusterer implements IClusterStuff {
 		 * Local variable
 		 */
 		ClusteredPoints[] clusteredPoints = new ClusteredPoints[numClusters];
-		
+
 		/*
 		 * Pick initial clusterIds
 		 */
@@ -81,15 +93,15 @@ public class Clusterer implements IClusterStuff {
 		while ((error > ERR_MARGIN) && (j <= MAX_ITERATIONS)) {
 			/* reset clustered points */
 			resetClusteredPoints(clusteredPoints);
-			
+
 			/* classify all points */
 			for (i = 0; i < data.size(); i++) {
 				Data sample = data.get(i);
-				
-				if(sample == null || sample.getFields() == null || sample.getClassId() == null){
+
+				if (sample == null || sample.getFields() == null || sample.getClassId() == null) {
 					continue;
 				}
-				
+
 				try {
 					int id = classifySample(sample, centroids);
 					Data tmpSample = sample;
@@ -105,46 +117,77 @@ public class Clusterer implements IClusterStuff {
 			 */
 			List<Data> oldCentroids = new ArrayList<Data>();
 			copyPoints(centroids, oldCentroids);
-			
+
 			/* Recompute new centroids */
 			computeCentroids(clusteredPoints, centroids, numFields);
-			
+
 			/* update error and increment counter */
 			error = computeMovement(oldCentroids, centroids);
 			j++;
 		}
-		
+
 		/*
 		 * Compose the result
 		 */
 		Map<Data, ClusteredPoints> result = new HashMap<Data, ClusteredPoints>();
-		for(int k = 0; k < clusteredPoints.length; k++){
+		for (int k = 0; k < clusteredPoints.length; k++) {
 			result.put(centroids.get(k), clusteredPoints[k]);
 		}
 
 		return result;
 	}
-	
-	private void resetClusteredPoints(ClusteredPoints[] clusteredPoints){
-		for( int i = 0; i < clusteredPoints.length; i++){
+
+	/**
+	 * Computes the distance between two points of type Data.
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 * @throws Exception
+	 */
+	public static double getDistance(Data a, Data b) throws Exception {
+		Double[] fields1 = a.getFields();
+		Double[] fields2 = b.getFields();
+
+		if (fields1 == null || fields2 == null) {
+			int j = 0;
+			j = j + 10;
+		}
+
+		if (fields1.length != fields2.length) {
+			throw new Exception(
+					" Fields for two samples are not consistent " + " A => " + a.toString() + " B=> " + b.toString());
+		}
+
+		double distance = 0.0d;
+		for (int i = 0; i < fields1.length; i++) {
+			distance = Math.pow((fields1[i] - fields2[i]), 2.0d);
+		}
+		distance = Math.sqrt(distance);
+
+		return distance;
+	}
+
+	private void resetClusteredPoints(ClusteredPoints[] clusteredPoints) {
+		for (int i = 0; i < clusteredPoints.length; i++) {
 			clusteredPoints[i] = new ClusteredPoints();
 			clusteredPoints[i].setClassId(Integer.toString(i));
 		}
 	}
-	
-	private double computeMovement(List<Data> oldCentroids, List<Data> newCentroids) throws Exception{
+
+	private double computeMovement(List<Data> oldCentroids, List<Data> newCentroids) throws Exception {
 		double distance = 0.0d;
-		
-		for(int i = 0; i < oldCentroids.size(); i++){
-			distance += getDistance( oldCentroids.get(i), newCentroids.get(i));
+
+		for (int i = 0; i < oldCentroids.size(); i++) {
+			distance += getDistance(oldCentroids.get(i), newCentroids.get(i));
 		}
-		
+
 		return distance;
 	}
-	
-	private void copyPoints(List<Data> a, List<Data> b){
+
+	private void copyPoints(List<Data> a, List<Data> b) {
 		b.clear();
-		for(int i = 0; i < a.size(); i++){
+		for (int i = 0; i < a.size(); i++) {
 			Data sample = a.get(i);
 			b.add(sample);
 		}
@@ -155,7 +198,7 @@ public class Clusterer implements IClusterStuff {
 		for (int i = 0; i < clusteredPoints.length; i++) {
 			Data centroidPoint = new Data(numFields);
 			List<Data> points = clusteredPoints[i].getPoints();
-			for( int j = 0; j < points.size(); j++ ){
+			for (int j = 0; j < points.size(); j++) {
 				Data sample = points.get(j);
 				addData(sample, centroidPoint);
 			}
@@ -163,11 +206,11 @@ public class Clusterer implements IClusterStuff {
 			centroids.add(centroidPoint);
 		}
 	}
-	
-	private void averageData(Data data, int num){
+
+	private void averageData(Data data, int num) {
 		Double[] fields = data.getFields();
-		for( int i = 0; i < fields.length; i++){
-			fields[i] /= (double)num;
+		for (int i = 0; i < fields.length; i++) {
+			fields[i] /= (double) num;
 		}
 		data.setFields(fields);
 	}
@@ -206,29 +249,6 @@ public class Clusterer implements IClusterStuff {
 		}
 
 		return classId;
-	}
-
-	private double getDistance(Data a, Data b) throws Exception {
-		Double[] fields1 = a.getFields();
-		Double[] fields2 = b.getFields();
-		
-		if(fields1 == null || fields2 == null ){
-			int j = 0;
-			j = j + 10;
-		}
-
-		if (fields1.length != fields2.length) {
-			throw new Exception(
-					" Fields for two samples are not consistent " + " A => " + a.toString() + " B=> " + b.toString());
-		}
-
-		double distance = 0.0d;
-		for (int i = 0; i < fields1.length; i++) {
-			distance = Math.pow((fields1[i] - fields2[i]), 2.0d);
-		}
-		distance = Math.sqrt(distance);
-
-		return distance;
 	}
 
 	private void initializeArray(int[] x) {

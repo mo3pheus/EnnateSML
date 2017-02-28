@@ -16,7 +16,6 @@ public class IrisDriver {
 		try {
 			irisProblem.loadData("iris.data.txt", ",", 4);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		irisProblem.populateTrainTestSets(80);
@@ -43,14 +42,19 @@ public class IrisDriver {
 		/*
 		 * Implements k-means clustering algorithm
 		 */
+		int numClusters = 3;
 		Clusterer clusterer = new Clusterer();
 		try {
-			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), 3);
+			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), numClusters);
+			irisProblem.setClusterer(clusterer);
 
 			for (Data centroid : result.keySet()) {
 				ClusteredPoints points = result.get(centroid);
 				System.out.println(" Centroid = " + centroid.toString() + " memberSize = " + points.getPoints().size());
 			}
+
+			System.out.println(
+					" For number of clusters = " + numClusters + " Cost = " + irisProblem.getCostFunction(result));
 
 		} catch (Exception e) {
 			e.printStackTrace();

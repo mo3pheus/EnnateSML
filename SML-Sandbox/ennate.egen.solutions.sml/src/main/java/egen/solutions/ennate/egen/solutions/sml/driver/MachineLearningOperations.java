@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ennate.egen.solutions.sml.domain.Classifier;
 import ennate.egen.solutions.sml.domain.Clusterer;
+import ennate.egen.solutions.sml.domain.Clusterer.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
 import ennate.egen.solutions.sml.domain.Result;
 
@@ -155,6 +157,25 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 */
 	public ArrayList<Data> getTestingData() {
 		return testingSet;
+	}
+	
+	/**
+	 * This function computes the total cost of the clustered points.
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public double getCostFunction(Map<Data,ClusteredPoints> map) throws Exception{
+		double cost = 0.0d;
+		
+		for(Data centroid:map.keySet()){
+			ClusteredPoints points = map.get(centroid);
+			for(int i = 0; i < points.getPoints().size(); i++){
+				cost += Clusterer.getDistance(centroid,  points.getPoints().get(i));
+			}
+		}
+		
+		return cost;
 	}
 
 	private boolean alreadyPresent(int target, int[] host) {
