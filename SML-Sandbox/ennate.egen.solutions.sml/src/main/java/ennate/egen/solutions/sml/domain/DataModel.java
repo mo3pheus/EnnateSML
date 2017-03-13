@@ -37,11 +37,10 @@ public class DataModel {
 		stdDev = new Data(numberOfFields);
 		classId = "";
 	}
-	
-	public String toString(){
-		return " Number of Fields = " + numberOfFields 
-				+ " Mean Vector => " + mean.toString()
-				+ " StdDev Vector => " + stdDev.toString();
+
+	public String toString() {
+		return " Number of Fields = " + numberOfFields + " Mean Vector => " + mean.toString() + " StdDev Vector => "
+				+ stdDev.toString();
 	}
 
 	/**
@@ -52,7 +51,7 @@ public class DataModel {
 	 */
 	public DataModel(ArrayList<Data> data, int numberOfFields) {
 		this.numberOfFields = numberOfFields;
-		
+
 		/*
 		 * Get class id and sanity check
 		 */
@@ -69,12 +68,12 @@ public class DataModel {
 		mean = new Data(numberOfFields);
 		stdDev = new Data(numberOfFields);
 
-		// compute the aggregate
+		/* compute the aggregate */
 		Double[] mFields = new Double[numberOfFields];
-		for(int j = 0; j < numberOfFields; j++){
+		for (int j = 0; j < numberOfFields; j++) {
 			mFields[j] = 0.0d;
 		}
-		
+
 		for (int i = 0; i < data.size(); i++) {
 			Data sample = data.get(i);
 			Double[] fields = sample.getFields();
@@ -82,19 +81,19 @@ public class DataModel {
 				mFields[j] += fields[j];
 			}
 		}
-		
-		// compute the mean
+
+		/* compute the mean */
 		for (int j = 0; j < numberOfFields; j++) {
 			mFields[j] /= ((double) data.size());
 		}
 		mean.setFields(mFields);
 
-		// compute aggregate difference from mean squared
+		/* compute aggregate difference from mean squared */
 		Double[] stdDevFields = new Double[this.numberOfFields];
-		for(int j = 0; j < numberOfFields; j++){
+		for (int j = 0; j < numberOfFields; j++) {
 			stdDevFields[j] = 0.0d;
 		}
-		
+
 		for (int i = 0; i < data.size(); i++) {
 			Data sample = data.get(i);
 			Double[] fields = sample.getFields();
@@ -104,13 +103,12 @@ public class DataModel {
 			}
 		}
 
-		// compute the std dev
+		/* compute the std dev */
 		for (int j = 0; j < this.numberOfFields; j++) {
 			stdDevFields[j] /= (double) data.size();
 			stdDevFields[j] = Math.sqrt(stdDevFields[j]);
 		}
-		
+
 		stdDev.setFields(stdDevFields);
 	}
 }
-

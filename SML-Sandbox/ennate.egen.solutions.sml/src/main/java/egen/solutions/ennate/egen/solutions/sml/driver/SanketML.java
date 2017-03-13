@@ -1,7 +1,7 @@
 package egen.solutions.ennate.egen.solutions.sml.driver;
 
 import ennate.egen.solutions.sml.domain.ClassificationEngine;
-import ennate.egen.solutions.sml.domain.Clusterer;
+import ennate.egen.solutions.sml.domain.ClusteringEngine;
 
 public class SanketML extends MachineLearningOperations<ClassificationEngine>{
 
@@ -16,12 +16,12 @@ public class SanketML extends MachineLearningOperations<ClassificationEngine>{
 	}
 
 	@Override
-	public Clusterer getClusterer() {
+	public ClusteringEngine getClusterer() {
 		return clusteringEngine;
 	}
 
 	@Override
-	public void setClusterer(Clusterer clusteringEngine) {
+	public void setClusterer(ClusteringEngine clusteringEngine) {
 		this.clusteringEngine = clusteringEngine;
 	}
 }

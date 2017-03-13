@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ClassificationEngine implements Classifier{
-	
+public class ClassificationEngine implements Classifier {
+
 	private ArrayList<DataModel> models;
 
+	/**
+	 * This function builds models based on the trainingData and the number of
+	 * fields.
+	 */
 	public void buildModels(ArrayList<Data> trainingData, int numberOfFields) {
 		models = new ArrayList<DataModel>();
 		Map<String, Integer> classMap = getClassMap(trainingData);
@@ -25,16 +29,28 @@ public class ClassificationEngine implements Classifier{
 			models.add(new DataModel(temp, numberOfFields));
 		}
 	}
-	
-	public ArrayList<DataModel> getModles(){
+
+	/**
+	 * This function returns the built models. If buildModels() is not called.
+	 * This will return null.
+	 * 
+	 * @return
+	 */
+	public ArrayList<DataModel> getModles() {
 		return models;
 	}
 
+	/**
+	 * This function lets you classify the given sample.
+	 */
 	public Result classify(Data sample) {
 		Result id = new Result();
 		double maxProb = Double.MIN_VALUE;
 		String classId = "";
 
+		/*
+		 * Classify sample to a model.
+		 */
 		for (int i = 0; i < models.size(); i++) {
 			double dist = ClassificationEngine.getDistance(sample, models.get(i));
 
@@ -49,18 +65,14 @@ public class ClassificationEngine implements Classifier{
 
 		return id;
 	}
-	
-	private Map<String, Integer> getClassMap(ArrayList<Data> data) {
-		Map<String, Integer> classMap = new HashMap<String, Integer>();
-		for (int i = 0; i < data.size(); i++) {
-			if (data.get(i).getClassId() != null) {
-				classMap.put(data.get(i).getClassId(), 1);
-			}
-		}
 
-		return classMap;
-	}
-	
+	/**
+	 * This function gets a distance measure from a sample to the given model.
+	 * 
+	 * @param sample
+	 * @param model
+	 * @return
+	 */
 	public static double getDistance(Data sample, DataModel model) {
 		double distance = -1.0d;
 
@@ -71,5 +83,16 @@ public class ClassificationEngine implements Classifier{
 		distance = Math.sqrt(distance);
 
 		return Math.pow(Math.E, (-1.0d * distance));
+	}
+
+	private Map<String, Integer> getClassMap(ArrayList<Data> data) {
+		Map<String, Integer> classMap = new HashMap<String, Integer>();
+		for (int i = 0; i < data.size(); i++) {
+			if (data.get(i).getClassId() != null) {
+				classMap.put(data.get(i).getClassId(), 1);
+			}
+		}
+
+		return classMap;
 	}
 }

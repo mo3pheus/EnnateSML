@@ -9,19 +9,18 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ennate.egen.solutions.sml.domain.Classifier;
-import ennate.egen.solutions.sml.domain.Clusterer;
-import ennate.egen.solutions.sml.domain.Clusterer.ClusteredPoints;
+import ennate.egen.solutions.sml.domain.ClusteringEngine;
+import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
 import ennate.egen.solutions.sml.domain.Result;
 
 public abstract class MachineLearningOperations<T extends Classifier> {
-
 	private ArrayList<Data> trainingSet;
 	private ArrayList<Data> testingSet;
 	private ArrayList<Data> totalDataset;
 	protected T classificationEngine;
-	protected Clusterer clusteringEngine;
-	
+	protected ClusteringEngine clusteringEngine;
+
 	/**
 	 * Instantiates the class.
 	 */
@@ -30,48 +29,51 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		testingSet = new ArrayList<Data>();
 		totalDataset = new ArrayList<Data>();
 	}
-	
+
 	/**
 	 * Sets the classification engine
+	 * 
 	 * @param classificationEngine
 	 */
 	public abstract void setClassificationEngine(T classificationEngine);
-	
+
 	/**
 	 * Returns the classification Engine
+	 * 
 	 * @return
 	 */
 	public abstract T getClassificationEngine();
-	
-	/**
-	 *  Returns clusteringEngine
-	 * @return
-	 */
-	public abstract Clusterer getClusterer();
-	
-	/**
-	 *  Sets the clusteringEngine
-	 * @param clusteringEngine
-	 */
-	public abstract void setClusterer(Clusterer clusteringEngine);
 
 	/**
-	 *  Loads the data from the given fileLocation. Data needs to be delimiter separated with the last column
-	 *  showing the classId.
-	 *  
+	 * Returns clusteringEngine
+	 * 
+	 * @return
+	 */
+	public abstract ClusteringEngine getClusterer();
+
+	/**
+	 * Sets the clusteringEngine
+	 * 
+	 * @param clusteringEngine
+	 */
+	public abstract void setClusterer(ClusteringEngine clusteringEngine);
+
+	/**
+	 * Loads the data from the given fileLocation. Data needs to be delimiter
+	 * separated with the last column showing the classId.
+	 * 
 	 * @param fileLocation
 	 * @param delimiter
 	 * @param numberOfFields
 	 * @throws IOException
+	 * 
 	 */
 	public void loadData(String fileLocation, String delimiter, int numberOfFields) throws IOException {
 		/*
 		 * Load the file
 		 */
-		//System.out.println(" Path  = " + this.getClass().getClassLoader().getResource(fileLocation).getPath());
 		File file = new File(this.getClass().getClassLoader().getResource(fileLocation).getPath());
 		totalDataset = new ArrayList<Data>();
-		//this.numberOfFields = numberOfFields;
 
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = null;
@@ -80,7 +82,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 				Data temp = new Data(line, delimiter, numberOfFields);
 				totalDataset.add(temp);
 			} catch (Exception e) {
-
+				System.out.println(e.getMessage());
 			}
 		}
 
@@ -88,7 +90,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	}
 
 	/**
-	 * This function splits the complete dataset into training and testing data
+	 * This function splits the complete data set into training and testing data
 	 * sets with the given percentage.
 	 * 
 	 * @param trainPercent
@@ -103,18 +105,17 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		int testSamplesCount = totalDataset.size() - trainSamplesCount;
 		int[] testIndices = new int[testSamplesCount];
 
-		/* generate the indices for random test samples */
+		/* Generate the indices for random test samples */
 		int numFilled = 0;
 		while (numFilled != testSamplesCount) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, testSamplesCount + 1);
 			if (!alreadyPresent(randomNum, testIndices)) {
 				testIndices[numFilled] = randomNum;
-				System.out.println("Random seed = " + randomNum);
 				numFilled++;
 			}
 		}
 
-		/* pull the elements and populate the arrays */
+		/* Pull the elements and populate the arrays */
 		for (int i = 0; i < totalDataset.size(); i++) {
 			Data temp = totalDataset.get(i);
 			if (alreadyPresent(i, testIndices)) {
@@ -124,9 +125,11 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 			}
 		}
 	}
-	
+
 	/**
-	 *  This function gets the accuracy score by evaluating learnt models on testSet.
+	 * This function gets the accuracy score by evaluating learnt models on
+	 * testSet.
+	 * 
 	 * @return
 	 */
 	public double getAccuracy() {
@@ -135,6 +138,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		for (int i = 0; i < testingSet.size(); i++) {
 			Data testPoint = testingSet.get(i);
 			Result result = classificationEngine.classify(testPoint);
+			System.out.println("Probability or confidence measure = " + result.getConfidence() );
 			if (testPoint.getClassId().equals(result.getClassId())) {
 				accurate++;
 			}
@@ -144,7 +148,8 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	}
 
 	/**
-	 *  Returns List of training data points
+	 * Returns List of training data points
+	 * 
 	 * @return
 	 */
 	public ArrayList<Data> getTrainingData() {
@@ -153,28 +158,30 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 
 	/**
 	 * Returns List of testing data points
+	 * 
 	 * @return
 	 */
 	public ArrayList<Data> getTestingData() {
 		return testingSet;
 	}
-	
+
 	/**
 	 * This function computes the total cost of the clustered points.
+	 * 
 	 * @param map
 	 * @return
 	 * @throws Exception
 	 */
-	public double getCostFunction(Map<Data,ClusteredPoints> map) throws Exception{
+	public double getCostFunction(Map<Data, ClusteredPoints> map) throws Exception {
 		double cost = 0.0d;
-		
-		for(Data centroid:map.keySet()){
+
+		for (Data centroid : map.keySet()) {
 			ClusteredPoints points = map.get(centroid);
-			for(int i = 0; i < points.getPoints().size(); i++){
-				cost += Clusterer.getDistance(centroid,  points.getPoints().get(i));
+			for (int i = 0; i < points.getPoints().size(); i++) {
+				cost += ClusteringEngine.getDistance(centroid, points.getPoints().get(i));
 			}
 		}
-		
+
 		return cost;
 	}
 

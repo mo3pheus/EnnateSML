@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Clusterer implements IClusterStuff {
+public class ClusteringEngine implements IClusterStuff {
 
 	public static final double ERR_MARGIN = 0.0001d;
 	public static final int MAX_ITERATIONS = 1000;
@@ -15,7 +15,7 @@ public class Clusterer implements IClusterStuff {
 	 * Class to hold clustered set of points. Contains a list of points and the
 	 * classId they were classified to.
 	 * 
-	 * @author sanketkorgaonkar
+	 * @author sanket korgaonkar
 	 *
 	 */
 	public class ClusteredPoints {
@@ -97,7 +97,6 @@ public class Clusterer implements IClusterStuff {
 			/* classify all points */
 			for (i = 0; i < data.size(); i++) {
 				Data sample = data.get(i);
-
 				if (sample == null || sample.getFields() == null || sample.getClassId() == null) {
 					continue;
 				}
@@ -263,8 +262,6 @@ public class Clusterer implements IClusterStuff {
 				return true;
 			}
 		}
-
 		return false;
 	}
-
 }
