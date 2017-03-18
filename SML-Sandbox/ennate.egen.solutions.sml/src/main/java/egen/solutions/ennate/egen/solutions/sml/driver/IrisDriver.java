@@ -21,7 +21,7 @@ public class IrisDriver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		irisProblem.populateTrainTestSets(90);
+		irisProblem.populateTrainTestSets(80);
 
 		System.out.println(" Number of training samples = " + irisProblem.getTrainingData().size());
 		System.out.println(" Number of testing samples = " + irisProblem.getTestingData().size());
@@ -41,12 +41,12 @@ public class IrisDriver {
 		}
 		irisProblem.setClassificationEngine(classificationEngine);
 
-		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " %");
+		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
 
 		/*
-		 * Implements k-means clustering algorithm
+		 * Implements k-means clustering algorithm.
 		 */
-		int numClusters = 3;
+		/*int numClusters = 3;
 		ClusteringEngine clusterer = new ClusteringEngine();
 		try {
 			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), numClusters);
@@ -63,7 +63,7 @@ public class IrisDriver {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Exception in clustering data!");
-		}
+		}*/
 	}
 }
 

@@ -46,6 +46,7 @@ public class ClusteringEngine implements IClusterStuff {
 	 * This function takes in a list of points and the number of clusters and
 	 * applies k-means clustering algorithm to find n-clusters, it returns the
 	 * result as a map of the <centroid, clusteredPoints>
+	 * 
 	 */
 	public Map<Data, ClusteredPoints> clusterData(List<Data> data, int numClusters) throws Exception {
 		/*

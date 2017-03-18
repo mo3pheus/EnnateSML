@@ -105,7 +105,7 @@ public class DataModel {
 
 		/* compute the std dev */
 		for (int j = 0; j < this.numberOfFields; j++) {
-			stdDevFields[j] /= (double) data.size();
+			stdDevFields[j] /= ((double) data.size()-1);
 			stdDevFields[j] = Math.sqrt(stdDevFields[j]);
 		}
 

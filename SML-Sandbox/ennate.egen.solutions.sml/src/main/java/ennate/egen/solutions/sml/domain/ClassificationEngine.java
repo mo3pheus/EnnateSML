@@ -85,6 +85,12 @@ public class ClassificationEngine implements Classifier {
 		return Math.pow(Math.E, (-1.0d * distance));
 	}
 
+	/**
+	 * This function returns a map of the data given. 
+	 * 
+	 * @param data
+	 * @return
+	 */
 	private Map<String, Integer> getClassMap(ArrayList<Data> data) {
 		Map<String, Integer> classMap = new HashMap<String, Integer>();
 		for (int i = 0; i < data.size(); i++) {
