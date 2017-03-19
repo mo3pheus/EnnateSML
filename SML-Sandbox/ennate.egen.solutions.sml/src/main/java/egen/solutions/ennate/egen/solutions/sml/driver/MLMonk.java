@@ -9,7 +9,7 @@ import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
 import ennate.egen.solutions.sml.domain.DataModel;
 
-public class IrisDriver {
+public class MLMonk {
 
 	public static void main(String[] args) {
 		/*
