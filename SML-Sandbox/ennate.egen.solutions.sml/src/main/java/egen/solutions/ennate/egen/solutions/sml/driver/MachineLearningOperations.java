@@ -15,11 +15,11 @@ import ennate.egen.solutions.sml.domain.Data;
 import ennate.egen.solutions.sml.domain.Result;
 
 public abstract class MachineLearningOperations<T extends Classifier> {
-	private ArrayList<Data> trainingSet;
-	private ArrayList<Data> testingSet;
-	private ArrayList<Data> totalDataset;
-	protected T classificationEngine;
-	protected ClusteringEngine clusteringEngine;
+	private ArrayList<Data>		trainingSet;
+	private ArrayList<Data>		testingSet;
+	private ArrayList<Data>		totalDataset;
+	protected T					classificationEngine;
+	protected ClusteringEngine	clusteringEngine;
 
 	/**
 	 * Instantiates the class.
@@ -96,7 +96,6 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 * @param trainPercent
 	 */
 	public void populateTrainTestSets(int trainPercent) {
-		/* Sanity check */
 		if (trainPercent >= 100) {
 			System.out.println("Using entire data for training causes no learning!");
 		}
@@ -105,17 +104,15 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		int testSamplesCount = totalDataset.size() - trainSamplesCount;
 		int[] testIndices = new int[testSamplesCount];
 
-		/* Generate the indices for random test samples */
 		int numFilled = 0;
 		while (numFilled != testSamplesCount) {
-			int randomNum = ThreadLocalRandom.current().nextInt(0, testSamplesCount + 1);
+			int randomNum = ThreadLocalRandom.current().nextInt(0, totalDataset.size() + 1);
 			if (!alreadyPresent(randomNum, testIndices)) {
 				testIndices[numFilled] = randomNum;
 				numFilled++;
 			}
 		}
 
-		/* Pull the elements and populate the arrays */
 		for (int i = 0; i < totalDataset.size(); i++) {
 			Data temp = totalDataset.get(i);
 			if (alreadyPresent(i, testIndices)) {
@@ -138,7 +135,8 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		for (int i = 0; i < testingSet.size(); i++) {
 			Data testPoint = testingSet.get(i);
 			Result result = classificationEngine.classify(testPoint);
-			System.out.println("Probability or confidence measure = " + result.getConfidence() );
+			// System.out.println("Probability or confidence measure = " +
+			// result.getConfidence() );
 			if (testPoint.getClassId().equals(result.getClassId())) {
 				accurate++;
 			}
@@ -187,14 +185,12 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 
 	private boolean alreadyPresent(int target, int[] host) {
 		boolean present = false;
-
 		for (int i = 0; i < host.length; i++) {
 			if (host[i] == target) {
 				present = true;
 				break;
 			}
 		}
-
 		return present;
 	}
 }

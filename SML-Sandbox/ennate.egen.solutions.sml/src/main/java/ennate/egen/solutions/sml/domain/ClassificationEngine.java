@@ -25,7 +25,6 @@ public class ClassificationEngine implements Classifier {
 					temp.add(trainingData.get(j));
 				}
 			}
-
 			models.add(new DataModel(temp, numberOfFields));
 		}
 	}
@@ -47,10 +46,6 @@ public class ClassificationEngine implements Classifier {
 		Result id = new Result();
 		double maxProb = Double.MIN_VALUE;
 		String classId = "";
-
-		/*
-		 * Classify sample to a model.
-		 */
 		for (int i = 0; i < models.size(); i++) {
 			double dist = ClassificationEngine.getDistance(sample, models.get(i));
 
@@ -74,19 +69,24 @@ public class ClassificationEngine implements Classifier {
 	 * @return
 	 */
 	public static double getDistance(Data sample, DataModel model) {
-		double distance = -1.0d;
+		double distance = 0.0d;
+		Double[] stdDev = model.getStdDev().getFields();
+		Double[] mean = model.getMean().getFields();
+		Double[] sFields = sample.getFields();
 
-		for (int i = 0; i < sample.getFields().length; i++) {
-			distance += (((sample.getFields()[i] - model.getMean().getFields()[i]) / model.getStdDev().getFields()[i])
-					* ((sample.getFields()[i] - model.getMean().getFields()[i]) / model.getStdDev().getFields()[i]));
+		for (int i = 0; i < stdDev.length; i++) {
+			double constant = 1.0d / (stdDev[i] * Math.sqrt(2.0d * Math.PI));
+			double term = (sFields[i] - mean[i]) / stdDev[i];
+			term *= term;
+			term *= -0.5d;
+			distance += (Math.pow(Math.E, term) * constant);
 		}
-		distance = Math.sqrt(distance);
 
-		return Math.pow(Math.E, (-1.0d * distance));
+		return distance;
 	}
 
 	/**
-	 * This function returns a map of the data given. 
+	 * This function returns a map of the data given.
 	 * 
 	 * @param data
 	 * @return

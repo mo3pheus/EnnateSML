@@ -46,7 +46,7 @@ public class MLMonk {
 		/*
 		 * Implements k-means clustering algorithm.
 		 */
-		/*int numClusters = 3;
+		int numClusters = 4;
 		ClusteringEngine clusterer = new ClusteringEngine();
 		try {
 			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), numClusters);
@@ -63,7 +63,7 @@ public class MLMonk {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Exception in clustering data!");
-		}*/
+		}
 	}
 }
 
