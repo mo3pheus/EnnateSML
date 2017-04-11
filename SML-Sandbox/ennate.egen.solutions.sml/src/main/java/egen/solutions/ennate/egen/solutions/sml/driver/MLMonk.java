@@ -3,11 +3,8 @@ package egen.solutions.ennate.egen.solutions.sml.driver;
 import java.io.IOException;
 import java.util.Map;
 
-import ennate.egen.solutions.sml.domain.ClassificationEngine;
-import ennate.egen.solutions.sml.domain.ClusteringEngine;
+import ennate.egen.solutions.sml.domain.*;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
-import ennate.egen.solutions.sml.domain.Data;
-import ennate.egen.solutions.sml.domain.DataModel;
 
 public class MLMonk {
 
@@ -21,6 +18,8 @@ public class MLMonk {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		//Use 80% of sample for training and 20% for testing
 		irisProblem.populateTrainTestSets(80);
 
 		System.out.println(" Number of training samples = " + irisProblem.getTrainingData().size());
@@ -36,7 +35,7 @@ public class MLMonk {
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
 
-		for (DataModel model : classificationEngine.getModles()) {
+		for (AK_DataModel model : classificationEngine.getModles()) {
 			System.out.println(model.toString());
 		}
 		irisProblem.setClassificationEngine(classificationEngine);
