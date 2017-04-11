@@ -108,4 +108,55 @@ public class PCAUtil {
 		mean.setFields(fields);
 		return mean;
 	}
+
+	public static double[][] convertDataSetToMatrixMean(List<Data> dataSet, Double[] mean) {
+		if (dataSet.isEmpty()) {
+			System.out.println("Dataset is empty!");
+			return null;
+		}
+
+		int numFields = dataSet.get(0).getFields().length;
+		double[][] matrix = new double[dataSet.size()][numFields];
+
+		for (int i = 0; i <= dataSet.size()/2; i++) {
+			Data temp1 = dataSet.get(i);
+			Data temp2 = dataSet.get(dataSet.size() - 1 - i);
+			for (int j = 0; j <= numFields/2; j++) {
+				matrix[i][j] = temp1.getFields()[j] - mean[j];
+				matrix[i][numFields - 1 - j] = temp1.getFields()[numFields - 1 - j] - mean[numFields - 1 - j];
+				matrix[dataSet.size() - 1 - i][j] = temp2.getFields()[j] - mean[j];
+				matrix[dataSet.size() - 1 - i][numFields - 1 - j] = temp2.getFields()[numFields - 1 - j] - mean[numFields - 1 - j];
+			}
+		}
+		return matrix;
+	}
+
+	public static double[][] buildCovarianceMatrix(double[][] dataMeanMatrix, Double[] stdDev) {
+		int numFields = dataMeanMatrix[0].length;
+		double[][] covMatrix = new double[numFields][numFields];
+		for (int i = 0; i < numFields; i++) {
+			covMatrix[i][i] = Math.pow(stdDev[i], 2);
+			for (int j = i+1; j < numFields; j++) {
+				covMatrix[i][j] = 0;
+				for (int k = 0; k < dataMeanMatrix.length; k++) {
+					covMatrix[i][j] += dataMeanMatrix[k][i] * dataMeanMatrix[k][j];
+				}
+				covMatrix[i][j] /= (dataMeanMatrix.length - 1);
+				covMatrix[j][i] = covMatrix[i][j];
+			}
+		}
+
+		return covMatrix;
+	}
+
+	public static void printMatrix(double[][] matrix) {
+		System.out.println("\nCovariance Matrix: ");
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
+				System.out.print(matrix[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println("");
+	}
 }

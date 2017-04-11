@@ -3,6 +3,7 @@ package ennate.egen.solutions.sml.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import ennate.egen.solutions.sml.etl.PCAUtil;
 
 public class ClassificationEngine implements Classifier {
 
@@ -16,6 +17,9 @@ public class ClassificationEngine implements Classifier {
 		models = new ArrayList<DataModel>();
 		Map<String, Integer> classMap = getClassMap(trainingData);
 		Object[] classIds = classMap.keySet().toArray();
+		DataModel trainingModel = new DataModel(trainingData, numberOfFields);
+		double[][] covMatrix = PCAUtil.buildCovarianceMatrix(PCAUtil.convertDataSetToMatrixMean(trainingData, trainingModel.getMean().getFields()), trainingModel.getStdDev().getFields());
+		PCAUtil.printMatrix(covMatrix);
 
 		for (int i = 0; i < classIds.length; i++) {
 			ArrayList<Data> temp = new ArrayList<Data>();
