@@ -6,12 +6,13 @@ import java.util.Map;
 
 public class ClassificationEngine implements Classifier {
 
+    private ArrayList<Model> testModels;
 	private ArrayList<DataModel>	models;
 	private static boolean			debug;
 
 	/**
 	 * Set debugMode
-	 * 
+	 *
 	 * @param debug
 	 */
 	public static void setDebugMode(boolean debugFlag) {
@@ -24,6 +25,7 @@ public class ClassificationEngine implements Classifier {
 	 */
 	public void buildModels(ArrayList<Data> trainingData, int numberOfFields) {
 		models = new ArrayList<DataModel>();
+		testModels = new ArrayList<Model>();
 		Map<String, Integer> classMap = getClassMap(trainingData);
 		Object[] classIds = classMap.keySet().toArray();
 
@@ -36,6 +38,7 @@ public class ClassificationEngine implements Classifier {
 				}
 			}
 			models.add(new DataModel(temp, numberOfFields));
+			testModels.add(new Model(temp, numberOfFields));
 		}
 	}
 
