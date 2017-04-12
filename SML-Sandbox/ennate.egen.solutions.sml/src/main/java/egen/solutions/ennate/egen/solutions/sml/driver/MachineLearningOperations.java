@@ -145,6 +145,22 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		return (double) (accurate / (double) totalTest) * 100.0d;
 	}
 
+	public double getAccuracyV2() {
+			int totalTest = testingSet.size();
+			int accurate = 0;
+			for (int i = 0; i < testingSet.size(); i++) {
+				Data testPoint = testingSet.get(i);
+				Result result = classificationEngine.classifyV2(testPoint);
+				// System.out.println("Probability or confidence measure = " +
+				// result.getConfidence() );
+				if (testPoint.getClassId().equals(result.getClassId())) {
+					accurate++;
+				}
+			}
+
+			return (double) (accurate / (double) totalTest) * 100.0d;
+		}
+
 	/**
 	 * Returns List of training data points
 	 * 

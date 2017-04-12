@@ -3,11 +3,8 @@ package egen.solutions.ennate.egen.solutions.sml.driver;
 import java.io.IOException;
 import java.util.Map;
 
-import ennate.egen.solutions.sml.domain.ClassificationEngine;
-import ennate.egen.solutions.sml.domain.ClusteringEngine;
+import ennate.egen.solutions.sml.domain.*;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
-import ennate.egen.solutions.sml.domain.Data;
-import ennate.egen.solutions.sml.domain.DataModel;
 
 public class MLMonk {
 
@@ -35,13 +32,22 @@ public class MLMonk {
 		 */
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
+		classificationEngine.buildModelsV2(irisProblem.getTrainingData(), 4);
 
 		for (DataModel model : classificationEngine.getModles()) {
+			System.out.println(model.toString());
+		}
+
+		System.out.println("models of v2");
+
+
+		for (DataModelV2 model : classificationEngine.getModelsV2()) {
 			System.out.println(model.toString());
 		}
 		irisProblem.setClassificationEngine(classificationEngine);
 
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
+		System.out.println("Accuracy Percentage of Version 2= " + irisProblem.getAccuracyV2() + " % ");
 
 		/*
 		 * Implements k-means clustering algorithm.
