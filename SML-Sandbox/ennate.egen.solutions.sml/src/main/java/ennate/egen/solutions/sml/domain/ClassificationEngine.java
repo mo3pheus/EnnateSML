@@ -6,14 +6,14 @@ import java.util.Map;
 
 public class ClassificationEngine implements Classifier {
 
-	private ArrayList<DataModel> models;
+	private ArrayList<JitendraDataModel> models;
 
 	/**
 	 * This function builds models based on the trainingData and the number of
 	 * fields.
 	 */
 	public void buildModels(ArrayList<Data> trainingData, int numberOfFields) {
-		models = new ArrayList<DataModel>();
+		models = new ArrayList<JitendraDataModel>();
 		Map<String, Integer> classMap = getClassMap(trainingData);
 		Object[] classIds = classMap.keySet().toArray();
 
@@ -25,7 +25,7 @@ public class ClassificationEngine implements Classifier {
 					temp.add(trainingData.get(j));
 				}
 			}
-			models.add(new DataModel(temp, numberOfFields));
+			models.add(new JitendraDataModel(temp, numberOfFields));
 		}
 	}
 
@@ -35,7 +35,7 @@ public class ClassificationEngine implements Classifier {
 	 * 
 	 * @return
 	 */
-	public ArrayList<DataModel> getModles() {
+	public ArrayList<JitendraDataModel> getModles() {
 		return models;
 	}
 
@@ -68,7 +68,7 @@ public class ClassificationEngine implements Classifier {
 	 * @param model
 	 * @return
 	 */
-	public static double getDistance(Data sample, DataModel model) {
+	public static double getDistance(Data sample, JitendraDataModel model) {
 		double distance = 0.0d;
 		Double[] stdDev = model.getStdDev().getFields();
 		Double[] mean = model.getMean().getFields();

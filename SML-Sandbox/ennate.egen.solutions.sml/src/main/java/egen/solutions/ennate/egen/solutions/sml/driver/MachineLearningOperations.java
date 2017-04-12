@@ -150,8 +150,8 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 * 
 	 * @return
 	 */
-	public ArrayList<Data> getTrainingData() {
-		return trainingSet;
+	public ArrayList<Data> getTotalDataset() {
+		return totalDataset;
 	}
 
 	/**
@@ -161,6 +161,15 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 */
 	public ArrayList<Data> getTestingData() {
 		return testingSet;
+	}
+
+	/**
+	 * Returns List of all data points
+	 *
+	 * @return
+	 */
+	public ArrayList<Data> getTrainingData() {
+		return trainingSet;
 	}
 
 	/**
@@ -193,4 +202,5 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		}
 		return present;
 	}
+
 }

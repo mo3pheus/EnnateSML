@@ -7,7 +7,7 @@ import ennate.egen.solutions.sml.domain.ClassificationEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
-import ennate.egen.solutions.sml.domain.DataModel;
+import ennate.egen.solutions.sml.domain.JitendraDataModel;
 
 public class MLMonk {
 
@@ -21,7 +21,7 @@ public class MLMonk {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		irisProblem.populateTrainTestSets(80);
+		irisProblem.populateTrainTestSets(100);
 
 		System.out.println(" Number of training samples = " + irisProblem.getTrainingData().size());
 		System.out.println(" Number of testing samples = " + irisProblem.getTestingData().size());
@@ -36,7 +36,7 @@ public class MLMonk {
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
 
-		for (DataModel model : classificationEngine.getModles()) {
+		for (JitendraDataModel model : classificationEngine.getModles()) {
 			System.out.println(model.toString());
 		}
 		irisProblem.setClassificationEngine(classificationEngine);
