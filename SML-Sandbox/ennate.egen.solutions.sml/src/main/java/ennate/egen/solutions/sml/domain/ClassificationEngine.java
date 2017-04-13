@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ClassificationEngine implements Classifier {
 
-  private ArrayList<DataModel> models;
+	private ArrayList<DataModel> models;
 	private ArrayList<DataModelV2> modelsV2;
 	private static boolean			debug;
 
@@ -143,19 +143,27 @@ public class ClassificationEngine implements Classifier {
 
 	public static double getDistanceV2(Data sample, DataModelV2 model) {
 		double distance = 0.0d;
-		Double[] stdDev = model.getStandardDeviation().getFields();
+		Double[] variance = model.getVariance().getFields();
 		Double[] mean = model.getMean().getFields();
-		Double[] sFields = sample.getFields();
+		Double[] fields = sample.getFields();
 
-		for (int i = 0; i < stdDev.length; i++) {
-			double constant = 1.0d / (stdDev[i] * Math.sqrt(2.0d * Math.PI));
-			double term = (sFields[i] - mean[i]) / stdDev[i];
-			term *= term;
-			term *= -0.5d;
-			distance += (Math.pow(Math.E, term) * constant);
+		for (int i = 0; i < mean.length; i++) {
+			distance += (1.0d / Math.sqrt(2.0d * Math.PI * variance[i]) ) * Math.exp( -1 * (fields[i] - mean[i]) * (fields[i] - mean[i])/ (2 *  variance[i]));
 		}
 
 		return distance;
+	}
+
+	public static double getEuclidianDistanceFromMean(Data sample, DataModelV2 model) {
+		double distance = 0.0d;
+		Double[] mean = model.getMean().getFields();
+		Double[] fields = sample.getFields();
+
+		for (int i = 0; i < mean.length; i++) {
+			distance += (mean[i] - fields[i]) * (mean[i] - fields[i]);
+		}
+
+		return Math.sqrt(distance);
 	}
 
 	/**

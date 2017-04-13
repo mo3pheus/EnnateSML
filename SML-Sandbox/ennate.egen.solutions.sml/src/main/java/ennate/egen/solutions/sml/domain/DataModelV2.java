@@ -9,6 +9,8 @@ public class DataModelV2 {
 	private List<Data> data;
 	private final int noOfFields;
 	private Data standardDeviation;
+	private Data variance;
+	private Double[][] correlationMatrix;
 	private Data mean;
 
 	public DataModelV2() {
@@ -23,6 +25,7 @@ public class DataModelV2 {
 		this.classId = Optional.ofNullable(data.get(0).getClassId()).orElse("");
 		calculateMean();
 		calculateStandardDeviation();
+		calculateCorrelationMatrix();
 	}
 
 	private void calculateMean() {
@@ -61,12 +64,15 @@ public class DataModelV2 {
 
 	private void calculateStandardDeviation() {
 		this.standardDeviation = new Data(this.noOfFields);
+		this.variance = new Data(this.noOfFields);
+		Double[] variance = new Double[noOfFields];
 		Double[] standardDeviationFields = new Double[noOfFields];
 
 		/**
 		 * Initialization
 		 */
 		for(int i = 0; i < noOfFields; i++ ) {
+			variance[i] = 0.0d;
 			standardDeviationFields[i] = 0.0d;
 		}
 
@@ -78,17 +84,54 @@ public class DataModelV2 {
 			Double[] dataFields = data.get(j).getFields();
 
 			for(int i = 0; i < noOfFields; i++ ) {
-				standardDeviationFields[i] += (dataFields[i] - mean.getFields()[i]) * (dataFields[i] - mean.getFields()[i]);
+				variance[i] += (dataFields[i] - mean.getFields()[i]) * (dataFields[i] - mean.getFields()[i]);
 			}
 		}
 
 		for(int i = 0; i < noOfFields; i++ ) {
-			standardDeviationFields[i] = standardDeviationFields[i]/(data.size() - 1);
-			standardDeviationFields[i] = Math.sqrt(standardDeviationFields[i]);
+			variance[i] = variance[i]/(data.size() - 1);
+			standardDeviationFields[i] = Math.sqrt(variance[i]);
 		}
 
 		this.standardDeviation.setFields(standardDeviationFields);
 		this.standardDeviation.setClassId(classId);
+
+		this.variance.setFields(variance);
+		this.variance.setClassId(classId);
+	}
+
+	private void calculateCorrelationMatrix() {
+		this.correlationMatrix = new Double[this.noOfFields][this.noOfFields];
+
+		/**
+		 * Initialization
+		 */
+		for(int i = 0; i < noOfFields; i++ ) {
+			for(int j = 0; j < noOfFields; j++ ) {
+				this.correlationMatrix[i][j] = 0.0d;
+			}
+		}
+
+
+		/**
+		 * evaluate Summation of (X-mean)(X-mean)
+		 */
+		Double[] varianceFields = this.variance.getFields();
+		Double[] meanFields = this.mean.getFields();
+		for(int i = 0; i < noOfFields; i++ ) {
+			for(int j = 0; j < noOfFields; j++ ) {
+				if (i == j) {
+					this.correlationMatrix[j][j] = varianceFields[i];
+				} else if (i > j) {
+					this.correlationMatrix[i][j] = this.correlationMatrix[j][i];
+				} else {
+					for(int k = 0; k < data.size(); k++) {
+						Double[] dataFields = data.get(j).getFields();
+						this.correlationMatrix[i][j] += (dataFields[i] -meanFields[i]) * (dataFields[j] - meanFields[j]) / (data.size() - 1);
+					}
+				}
+			}
+		}
 	}
 
 	public Data getStandardDeviation() {
@@ -119,4 +162,22 @@ public class DataModelV2 {
 		return " Number of Fields = " + noOfFields + " Mean Vector => " + mean.toString() + " StdDev Vector => "
 				+ standardDeviation.toString();
 	}
+
+	public Data getVariance() {
+		return variance;
+	}
+
+	public void setVariance(Data variance) {
+		this.variance = variance;
+	}
+
+	public Double[][] getCorrelationMatrix() {
+		return correlationMatrix;
+	}
+
+	public void setCorrelationMatrix(Double[][] correlationMatrix) {
+		this.correlationMatrix = correlationMatrix;
+	}
+
+
 }
