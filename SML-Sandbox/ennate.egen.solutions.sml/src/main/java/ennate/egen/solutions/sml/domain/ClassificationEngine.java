@@ -6,8 +6,18 @@ import java.util.Map;
 
 public class ClassificationEngine implements Classifier {
 
-	private ArrayList<DataModel> models;
+  private ArrayList<DataModel> models;
 	private ArrayList<DataModelV2> modelsV2;
+	private static boolean			debug;
+
+	/**
+	 * Set debugMode
+	 * 
+	 * @param debug
+	 */
+	public static void setDebugMode(boolean debugFlag) {
+		debug = debugFlag;
+	}
 
 	/**
 	 * This function builds models based on the trainingData and the number of
@@ -80,6 +90,7 @@ public class ClassificationEngine implements Classifier {
 		id.setClassId(classId);
 		id.setConfidence(maxProb);
 
+		printLine("Predicted classId = " + classId);
 		return id;
 	}
 
@@ -116,12 +127,16 @@ public class ClassificationEngine implements Classifier {
 		Double[] sFields = sample.getFields();
 
 		for (int i = 0; i < stdDev.length; i++) {
-			double constant = 1.0d / (stdDev[i] * Math.sqrt(2.0d * Math.PI));
-			double term = (sFields[i] - mean[i]) / stdDev[i];
-			term *= term;
-			term *= -0.5d;
-			distance += (Math.pow(Math.E, term) * constant);
+			double constant = 1.0d / Math.sqrt(2.0d * Math.PI * stdDev[i] * stdDev[i]);
+			double term = (-1.0d) * (sFields[i] - mean[i]) * (sFields[i] - mean[i]);
+			term /= (2.0d * stdDev[i] * stdDev[i]);
+			distance += constant * Math.exp(term);
 		}
+
+		printLine("Sample = " + sample.toString());
+		printLine("Model = " + model.toString());
+		printLine("PDF Score = " + distance);
+		printLine("------------------------------------------------------");
 
 		return distance;
 	}
@@ -158,5 +173,11 @@ public class ClassificationEngine implements Classifier {
 		}
 
 		return classMap;
+	}
+
+	private static void printLine(String s) {
+		if (debug) {
+			System.out.println(s);
+		}
 	}
 }

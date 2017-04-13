@@ -33,8 +33,8 @@ public class MLMonk {
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
 		classificationEngine.buildModelsV2(irisProblem.getTrainingData(), 4);
-
-		for (DataModel model : classificationEngine.getModles()) {
+    
+    for (DataModel model : classificationEngine.getModles()) {
 			System.out.println(model.toString());
 		}
 
@@ -44,14 +44,16 @@ public class MLMonk {
 		for (DataModelV2 model : classificationEngine.getModelsV2()) {
 			System.out.println(model.toString());
 		}
+    
+    ClassificationEngine.setDebugMode(true);
 		irisProblem.setClassificationEngine(classificationEngine);
-
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
 		System.out.println("Accuracy Percentage of Version 2= " + irisProblem.getAccuracyV2() + " % ");
 
 		/*
 		 * Implements k-means clustering algorithm.
 		 */
+		System.out.println("\n\n\n ############################  CLUSTERING  ###################################\n\n ");
 		int numClusters = 4;
 		ClusteringEngine clusterer = new ClusteringEngine();
 		try {

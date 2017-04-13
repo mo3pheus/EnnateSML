@@ -3,10 +3,10 @@ package ennate.egen.solutions.sml.domain;
 import java.util.ArrayList;
 
 public class DataModel {
-	private int numberOfFields;
-	private Data mean;
-	private Data stdDev;
-	private String classId;
+	private int		numberOfFields;
+	private Data	mean;
+	private Data	stdDev;
+	private String	classId;
 
 	public Data getMean() {
 		return mean;
@@ -39,7 +39,7 @@ public class DataModel {
 	}
 
 	public String toString() {
-		return " Number of Fields = " + numberOfFields + " Mean Vector => " + mean.toString() + " StdDev Vector => "
+		return "ClassId = " + classId + "\nMean Vector => " + mean.toString() + "\nStdDev Vector => "
 				+ stdDev.toString();
 	}
 
@@ -105,7 +105,7 @@ public class DataModel {
 
 		/* compute the std dev */
 		for (int j = 0; j < this.numberOfFields; j++) {
-			stdDevFields[j] /= ((double) data.size()-1);
+			stdDevFields[j] /= (double) data.size();
 			stdDevFields[j] = Math.sqrt(stdDevFields[j]);
 		}
 
