@@ -54,32 +54,33 @@ public class ClassificationEngine implements Classifier {
 	 */
 	public Result classify(Data sample) {
 		Result id = new Result();
-		double maxProb = Double.MIN_VALUE;
+		double maxPDF = Double.MIN_VALUE;
 		String classId = "";
 		for (int i = 0; i < models.size(); i++) {
-			double dist = ClassificationEngine.getDistance(sample, models.get(i));
+			double dist = ClassificationEngine.getPDFVal(sample, models.get(i));
 
-			if (dist > maxProb) {
-				maxProb = dist;
+			if (dist > maxPDF) {
+				maxPDF = dist;
 				classId = models.get(i).getClassId();
 			}
 		}
 
 		id.setClassId(classId);
-		id.setConfidence(maxProb);
+		id.setConfidence(maxPDF);
 
 		printLine("Predicted classId = " + classId);
 		return id;
 	}
 
 	/**
-	 * This function gets a distance measure from a sample to the given model.
+	 * This function gets the Probability Density Function value of a sample
+	 * with respect to the given model.
 	 * 
 	 * @param sample
 	 * @param model
 	 * @return
 	 */
-	public static double getDistance(Data sample, DataModel model) {
+	public static double getPDFVal(Data sample, DataModel model) {
 		double distance = 0.0d;
 		Double[] stdDev = model.getStdDev().getFields();
 		Double[] mean = model.getMean().getFields();
