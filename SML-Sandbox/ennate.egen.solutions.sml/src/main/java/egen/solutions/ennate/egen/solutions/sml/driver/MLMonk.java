@@ -7,7 +7,6 @@ import ennate.egen.solutions.sml.domain.ClassificationEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
-import ennate.egen.solutions.sml.domain.DataModel;
 
 public class MLMonk {
 
@@ -35,10 +34,6 @@ public class MLMonk {
 		 */
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
-
-		/*for (DataModel model : classificationEngine.getModles()) {
-			System.out.println(model.toString());
-		}*/
 
 		ClassificationEngine.setDebugMode(true);
 		irisProblem.setClassificationEngine(classificationEngine);

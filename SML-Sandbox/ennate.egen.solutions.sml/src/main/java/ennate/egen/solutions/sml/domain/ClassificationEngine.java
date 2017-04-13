@@ -94,7 +94,7 @@ public class ClassificationEngine implements Classifier {
 
 		printLine("Sample = " + sample.toString());
 		printLine("Model = " + model.toString());
-		printLine("Distance = " + distance);
+		printLine("PDF Score = " + distance);
 		printLine("------------------------------------------------------");
 
 		return distance;
