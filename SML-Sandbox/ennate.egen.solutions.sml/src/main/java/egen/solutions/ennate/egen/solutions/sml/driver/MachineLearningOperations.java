@@ -178,6 +178,10 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	public ArrayList<Data> getTestingData() {
 		return testingSet;
 	}
+	
+	public ArrayList<Data> getTotalData() {
+		return totalDataset;
+	}
 
 	/**
 	 * This function computes the total cost of the clustered points.
