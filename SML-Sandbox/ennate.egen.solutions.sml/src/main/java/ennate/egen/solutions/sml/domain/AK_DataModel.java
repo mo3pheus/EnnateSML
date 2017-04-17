@@ -14,10 +14,11 @@ public class AK_DataModel {
 
     public AK_DataModel(List<Data> data, int numberOfFields) {
         this.numberOfFields = numberOfFields;
-        mean = new Data(numberOfFields);
-        stdDev = new Data(numberOfFields);
+        this.mean = new Data(numberOfFields);
+        this.stdDev = new Data(numberOfFields);
         Double[] meanFields = setMean(data, numberOfFields);
         setStdDev(data, numberOfFields, meanFields);
+        this.classId = data.get(0).getClassId();
 
     }
 

@@ -47,14 +47,22 @@ public class ClassificationEngine implements Classifier {
 		double maxProb = Double.MIN_VALUE;
 		String classId = "";
 		for (int i = 0; i < models.size(); i++) {
-			double dist = ClassificationEngine.getDistance(sample, models.get(i));
+			double dist = ClassificationEngine.getDistance_AK(sample, models.get(i));
 
 			if (dist > maxProb) {
 				maxProb = dist;
 				classId = models.get(i).getClassId();
 			}
+			System.out.println("Sample = " + sample);
+			System.out.println("Model = ClassId = " + sample.getClassId());
+			System.out.println("Mean Vector => " + models.get(i).getMean());
+			System.out.println("StdDev Vector => " + models.get(i).getStdDev());
+			System.out.println("PDF Score = " + dist);
+			System.out.println("--------------------------------------------------------------------------");
 		}
 
+		System.out.println("Predicted classId = " + classId);
+		System.out.println("==========================================================================\n");
 		id.setClassId(classId);
 		id.setConfidence(maxProb);
 
@@ -82,6 +90,23 @@ public class ClassificationEngine implements Classifier {
 			distance += (Math.pow(Math.E, term) * constant);
 		}
 
+		return distance;
+	}
+
+	public static double getDistance_AK(Data sample, AK_DataModel model) {
+		double distance = 0.0d;
+		Double[] mean = model.getMean().getFields();
+		Double[] stdDev = model.getStdDev().getFields();
+		Double[] fields = sample.getFields();
+
+		for(int i =0 ; i < mean.length; i++) {
+			double constant = 1.0d/(stdDev[i]*Math.sqrt(2.0d * Math.PI));
+			double term = (fields[i] - mean[i])/stdDev[i];
+			term *= term;
+			term *= -0.5d;
+			distance += (Math.pow(Math.E, term) * constant);
+		}
+//		System.out.println("Distance" + distance);
 		return distance;
 	}
 

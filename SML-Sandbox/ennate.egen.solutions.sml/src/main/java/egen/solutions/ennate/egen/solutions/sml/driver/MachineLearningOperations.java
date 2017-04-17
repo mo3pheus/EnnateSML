@@ -134,6 +134,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		int accurate = 0;
 		for (int i = 0; i < testingSet.size(); i++) {
 			Data testPoint = testingSet.get(i);
+			System.out.println("=================================" + i + "=========================================");
 			Result result = classificationEngine.classify(testPoint);
 			// System.out.println("Probability or confidence measure = " +
 			// result.getConfidence() );

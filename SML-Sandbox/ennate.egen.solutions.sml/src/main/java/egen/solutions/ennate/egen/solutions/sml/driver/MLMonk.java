@@ -35,9 +35,9 @@ public class MLMonk {
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
 
-		for (AK_DataModel model : classificationEngine.getModles()) {
-			System.out.println(model.toString());
-		}
+//		for (AK_DataModel model : classificationEngine.getModles()) {
+////			System.out.println(model.toString());
+//		}
 		irisProblem.setClassificationEngine(classificationEngine);
 
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
@@ -53,11 +53,11 @@ public class MLMonk {
 
 			for (Data centroid : result.keySet()) {
 				ClusteredPoints points = result.get(centroid);
-				System.out.println(" Centroid = " + centroid.toString() + " memberSize = " + points.getPoints().size());
+//				System.out.println(" Centroid = " + centroid.toString() + " memberSize = " + points.getPoints().size());
 			}
 
-			System.out.println(
-					" For number of clusters = " + numClusters + " Cost = " + irisProblem.getCostFunction(result));
+//			System.out.println(
+//					" For number of clusters = " + numClusters + " Cost = " + irisProblem.getCostFunction(result));
 
 		} catch (Exception e) {
 			e.printStackTrace();
