@@ -3,10 +3,8 @@ package egen.solutions.ennate.egen.solutions.sml.driver;
 import java.io.IOException;
 import java.util.Map;
 
-import ennate.egen.solutions.sml.domain.ClassificationEngine;
-import ennate.egen.solutions.sml.domain.ClusteringEngine;
+import ennate.egen.solutions.sml.domain.*;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
-import ennate.egen.solutions.sml.domain.Data;
 
 public class MLMonk {
 
@@ -35,32 +33,34 @@ public class MLMonk {
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
 
-		ClassificationEngine.setDebugMode(true);
+		for (MachineLearningModel model : classificationEngine.getModles()) {
+			System.out.println(model.toString());
+		}
 		irisProblem.setClassificationEngine(classificationEngine);
+
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
 
-		/*
-		 * Implements k-means clustering algorithm.
-		 */
-		System.out.println("\n\n\n ############################  CLUSTERING  ###################################\n\n ");
-		int numClusters = 4;
-		ClusteringEngine clusterer = new ClusteringEngine();
-		try {
-			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), numClusters);
-			irisProblem.setClusterer(clusterer);
-
-			for (Data centroid : result.keySet()) {
-				ClusteredPoints points = result.get(centroid);
-				System.out.println(" Centroid = " + centroid.toString() + " memberSize = " + points.getPoints().size());
-			}
-
-			System.out.println(
-					" For number of clusters = " + numClusters + " Cost = " + irisProblem.getCostFunction(result));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Exception in clustering data!");
-		}
+//		/*
+//		 * Implements k-means clustering algorithm.
+//		 */
+//		int numClusters = 4;
+//		ClusteringEngine clusterer = new ClusteringEngine();
+//		try {
+//			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), numClusters);
+//			irisProblem.setClusterer(clusterer);
+//
+//			for (Data centroid : result.keySet()) {
+//				ClusteredPoints points = result.get(centroid);
+//				System.out.println(" Centroid = " + centroid.toString() + " memberSize = " + points.getPoints().size());
+//			}
+//
+//			System.out.println(
+//					" For number of clusters = " + numClusters + " Cost = " + irisProblem.getCostFunction(result));
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println("Exception in clustering data!");
+//		}
 	}
 }
 
