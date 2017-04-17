@@ -8,16 +8,13 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-import ennate.egen.solutions.sml.domain.Classifier;
-import ennate.egen.solutions.sml.domain.ClusteringEngine;
+import ennate.egen.solutions.sml.domain.*;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
-import ennate.egen.solutions.sml.domain.Data;
-import ennate.egen.solutions.sml.domain.Result;
 
 public abstract class MachineLearningOperations<T extends Classifier> {
-	private ArrayList<Data>		trainingSet;
-	private ArrayList<Data>		testingSet;
-	private ArrayList<Data>		totalDataset;
+	private ArrayList<Model>		trainingSet;
+	private ArrayList<Model>		testingSet;
+	private ArrayList<Model>		totalDataset;
 	protected T					classificationEngine;
 	protected ClusteringEngine	clusteringEngine;
 
@@ -25,9 +22,9 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 * Instantiates the class.
 	 */
 	public MachineLearningOperations() {
-		trainingSet = new ArrayList<Data>();
-		testingSet = new ArrayList<Data>();
-		totalDataset = new ArrayList<Data>();
+		trainingSet = new ArrayList<Model>();
+		testingSet = new ArrayList<Model>();
+		totalDataset = new ArrayList<Model>();
 	}
 
 	/**
@@ -73,14 +70,14 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		 * Load the file
 		 */
 		File file = new File(this.getClass().getClassLoader().getResource(fileLocation).getPath());
-		totalDataset = new ArrayList<Data>();
+		totalDataset = new ArrayList<Model>();
 
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = null;
 		while ((line = br.readLine()) != null) {
 			try {
 				Data temp = new Data(line, delimiter, numberOfFields);
-				totalDataset.add(temp);
+				totalDataset.add(new Model(temp.getFields(), temp.getClassId()));
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
@@ -114,7 +111,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		}
 
 		for (int i = 0; i < totalDataset.size(); i++) {
-			Data temp = totalDataset.get(i);
+			Model temp = totalDataset.get(i);
 			if (alreadyPresent(i, testIndices)) {
 				testingSet.add(temp);
 			} else {
@@ -133,13 +130,12 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		int totalTest = testingSet.size();
 		int accurate = 0;
 		for (int i = 0; i < testingSet.size(); i++) {
-			Data testPoint = testingSet.get(i);
-			System.out.println("\n\n=============================== " + i + " =====================================");
+			Model testPoint = testingSet.get(i);
 			Result result = classificationEngine.classify(testPoint);
-			if (testPoint.getClassId().equals(result.getClassId())) {
+
+			if (testPoint.getClassifierName().equalsIgnoreCase(result.getClassId())) {
 				accurate++;
 			}
-			System.out.println("========================================================================");
 		}
 
 		return (double) (accurate / (double) totalTest) * 100.0d;
@@ -150,7 +146,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 * 
 	 * @return
 	 */
-	public ArrayList<Data> getTrainingData() {
+	public ArrayList<Model> getTrainingData() {
 		return trainingSet;
 	}
 
@@ -159,7 +155,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 * 
 	 * @return
 	 */
-	public ArrayList<Data> getTestingData() {
+	public ArrayList<Model> getTestingData() {
 		return testingSet;
 	}
 

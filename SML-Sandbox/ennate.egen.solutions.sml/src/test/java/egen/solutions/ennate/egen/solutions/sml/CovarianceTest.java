@@ -16,7 +16,8 @@ public class CovarianceTest {
 			mlMonk.loadData("transfusion.data.txt",",", 4);
 			mlMonk.populateTrainTestSets(80);
 
-			double[][] covarMatrix = PCAUtil.getCovarianceMatrix(mlMonk.getTrainingData());
+//			double[][] covarMatrix = PCAUtil.getCovarianceMatrix(mlMonk.getTrainingData());
+			double[][] covarMatrix = null;
 			System.out.println("=============================================================");
 			System.out.println("Covariance Matrix:: ");
 			System.out.println("=============================================================");
