@@ -31,6 +31,10 @@ public class ClusteringEngine implements IClusterStuff {
 			classId = id;
 		}
 
+		public void setPoints(List<Data> points) {
+			this.points = points;
+		}
+
 		public void addToPoints(Data sample) {
 			if (sample != null) {
 				points.add(sample);

@@ -1,9 +1,10 @@
 package ennate.egen.solutions.sml.domain;
 
-public class Data {
+public class Data implements Cloneable {
 	private Double[] fields;
 	private String classId;
 	private int numberOfFields;
+	private int classNumber;
 
 	public Data(String content, String delimiter, int numberOfFields) throws NumberFormatException {
 		String[] parts = content.split(delimiter);
@@ -68,5 +69,20 @@ public class Data {
 
 	public void setClassId(String classId) {
 		this.classId = classId;
+	}
+
+	public int getClassNumber() {
+		return classNumber;
+	}
+
+	public void setClassNumber(int classNumber) {
+		this.classNumber = classNumber;
+	}
+
+	@Override
+	public Data clone () throws CloneNotSupportedException {
+		Object clone = super.clone();
+
+		return (Data) clone;
 	}
 }
