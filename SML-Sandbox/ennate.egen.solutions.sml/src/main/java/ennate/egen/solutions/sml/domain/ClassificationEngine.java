@@ -12,7 +12,7 @@ public class ClassificationEngine implements Classifier {
 	/**
 	 * Set debugMode
 	 * 
-	 * @param debug
+	 * @param debugFlag
 	 */
 	public static void setDebugMode(boolean debugFlag) {
 		debug = debugFlag;
@@ -118,7 +118,7 @@ public class ClassificationEngine implements Classifier {
 		return classMap;
 	}
 
-	private static void printLine(String s) {
+	protected static void printLine(String s) {
 		if (debug) {
 			System.out.println(s);
 		}

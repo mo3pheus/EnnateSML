@@ -1,14 +1,19 @@
 package egen.solutions.ennate.egen.solutions.sml.driver;
 
+import ennate.egen.solutions.sml.domain.ClassificationEngine;
+import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
+import ennate.egen.solutions.sml.domain.Data;
+import ennate.egen.solutions.sml.domain.ShreedharClassificationEngine;
+import ennate.egen.solutions.sml.domain.ShreedharClusteringEngine;
+import ennate.egen.solutions.sml.domain.ShreedharPrincipleComponentAnalysis;
+
 import java.io.IOException;
 import java.util.Map;
 
-import ennate.egen.solutions.sml.domain.ClassificationEngine;
-import ennate.egen.solutions.sml.domain.ClusteringEngine;
-import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
-import ennate.egen.solutions.sml.domain.Data;
-
 public class MLMonk {
+
+	private final static int numberOfFields = 4;
+	private final static int numClusters = 3;
 
 	public static void main(String[] args) {
 		/*
@@ -16,7 +21,9 @@ public class MLMonk {
 		 */
 		SanketML irisProblem = new SanketML();
 		try {
-			irisProblem.loadData("iris.data.txt", ",", 4);
+			irisProblem.loadData("iris.data.txt", ",", numberOfFields);
+//			irisProblem.loadData("iris-principle-component.csv", ",", numberOfFields);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -25,26 +32,50 @@ public class MLMonk {
 		System.out.println(" Number of training samples = " + irisProblem.getTrainingData().size());
 		System.out.println(" Number of testing samples = " + irisProblem.getTestingData().size());
 
-		/*
+		performClustering(irisProblem);
+		performClassification(irisProblem);
+		performPrincipleComponentAnalysis(irisProblem);
+	}
+
+
+	private static void performPrincipleComponentAnalysis(final SanketML irisProblem) {
+		System.out.println("=================================================================================");
+
+		irisProblem.populateTrainTestSets(100);
+		System.out.println(" Number of samples for Principle component Analysis = " + irisProblem.getTrainingData().size());
+
+		ShreedharPrincipleComponentAnalysis componentAnalysis = new ShreedharPrincipleComponentAnalysis(irisProblem.getTestingData(), numberOfFields);
+		componentAnalysis.computePrincipleComponents();
+	}
+
+	   /**
 		 * This part should be done by the students. Implement your own version
 		 * of ClassificationEngine and compare accuracy you get.
-		 * 
+		 *
 		 * 1. Instantiate the classificationEngine, 2. Report accuracy.
-		 * 
+		 *
 		 */
-		ClassificationEngine classificationEngine = new ClassificationEngine();
-		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
+	private static void performClassification(final SanketML irisProblem) {
+		ShreedharClassificationEngine classificationEngine = new ShreedharClassificationEngine();
+		classificationEngine.buildModels(irisProblem.getTrainingData(), numberOfFields);
+
+//		ClassificationEngine classificationEngine = new ClassificationEngine();
+//		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
 
 		ClassificationEngine.setDebugMode(true);
 		irisProblem.setClassificationEngine(classificationEngine);
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
+	}
 
-		/*
+	   /**
 		 * Implements k-means clustering algorithm.
 		 */
+	private static void performClustering(final SanketML irisProblem) {
+
 		System.out.println("\n\n\n ############################  CLUSTERING  ###################################\n\n ");
-		int numClusters = 4;
-		ClusteringEngine clusterer = new ClusteringEngine();
+		ShreedharClusteringEngine clusterer = new ShreedharClusteringEngine();
+
+//		ClusteringEngine clusterer = new ClusteringEngine();
 		try {
 			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), numClusters);
 			irisProblem.setClusterer(clusterer);
