@@ -3,11 +3,18 @@
  */
 package ennate.egen.solutions.sml.etl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import egen.solutions.ennate.egen.solutions.sml.driver.SanketML;
 import ennate.egen.solutions.sml.domain.ClassificationEngine;
@@ -200,5 +207,88 @@ public class KesavaUtil {
 		}
 		 
 		return Math.sqrt(distance);
+	}
+	
+	public static Object loadDataFromJsonFile(String filename) {
+		JSONParser parser = new JSONParser();
+		File file = new File((new KesavaUtil()).getClass().getClassLoader().getResource(filename).getPath());
+		
+		Object jsonObject = null;
+		try {
+			jsonObject = parser.parse(new FileReader(file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+//		if (jsonObject instanceof JSONArray) {
+//			Map<String, JSONArray> jsonMap = new HashMap<String, JSONArray>();
+//			jsonMap.put("JSONArray", (JSONArray) jsonObject);
+//			return new JSONObject(jsonMap);
+//		}
+        return jsonObject;
+	}
+
+	public static String[] getUniqueWordsFrom(String givenString) {
+		String[] words = givenString.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+		Map<String, Integer> wordMap = new HashMap<String, Integer>();
+		for(String word: words) {
+			wordMap.put(word, 1);
+		}
+		return wordMap.keySet().toArray(new String[wordMap.keySet().size()]);
+	}
+
+	public static Map<String, Integer> getWordFrequencyMap(String[] uniqueWords, String givenString) {
+		String[] words = givenString.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+		Map<String, Integer> frequencyMap = new HashMap<String, Integer>();
+		for (String word: uniqueWords) {
+			frequencyMap.put(word, 0);
+		}
+		
+		for (String word: words) {
+			frequencyMap.put(word, frequencyMap.get(word) == null ? 1 : frequencyMap.get(word) + 1);
+		}
+		
+		return frequencyMap;
+	}
+
+	public static Integer getScalarProduct(Map<String, Integer> frequencyMapFirst,
+			Map<String, Integer> frequencyMapSecond) {
+		Integer product = 0;
+		Map<String, Integer> scalarProduct = new HashMap<String, Integer>();
+		
+		for (String key: frequencyMapFirst.keySet()) {
+			Integer value1 = frequencyMapFirst.get(key);
+			value1 = value1 == null ? 0 : value1;
+			Integer value2 = frequencyMapSecond.get(key);
+			value2 = value2 == null ? 0 : value2;
+			scalarProduct.put(key, value1 * value2);
+		}
+		
+		for (String key: frequencyMapSecond.keySet()) {
+			Integer value1 = frequencyMapFirst.get(key);
+			value1 = value1 == null ? 0 : value1;
+			Integer value2 = frequencyMapSecond.get(key);
+			value2 = value2 == null ? 0 : value2;
+			scalarProduct.put(key, value1 * value2);
+		}
+		
+		for (Integer value: scalarProduct.values()) {
+			product += value;
+		}
+		
+		return product;
+	}
+
+	public static double getMagnitude(Map<String, Integer> map) {
+		double magnitude = 0;
+		for (Integer value: map.values()) {
+			magnitude += value == null ? 0 : value * value;
+		}
+		
+		return Math.sqrt(magnitude);
 	}
 }
