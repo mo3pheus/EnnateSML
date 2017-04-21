@@ -13,7 +13,7 @@ public class CovarianceTest {
 	public static void main(String[] args) {
 		try {
 			SanketML mlMonk = new SanketML();
-			mlMonk.loadData("transfusion.data.txt",",", 4);
+			mlMonk.loadData("iris.data.txt",",", 4);
 			mlMonk.populateTrainTestSets(80);
 
 			double[][] covarMatrix = PCAUtil.getCovarianceMatrix(mlMonk.getTrainingData());

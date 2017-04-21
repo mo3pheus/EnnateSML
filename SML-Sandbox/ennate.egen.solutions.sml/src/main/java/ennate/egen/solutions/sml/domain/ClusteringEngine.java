@@ -161,7 +161,7 @@ public class ClusteringEngine implements IClusterStuff {
 
 		double distance = 0.0d;
 		for (int i = 0; i < fields1.length; i++) {
-			distance = Math.pow((fields1[i] - fields2[i]), 2.0d);
+			distance += Math.pow((fields1[i] - fields2[i]), 2.0d);
 		}
 		distance = Math.sqrt(distance);
 

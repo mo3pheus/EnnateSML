@@ -11,9 +11,6 @@ import ennate.egen.solutions.sml.domain.Data;
 public class MLMonk {
 
 	public static void main(String[] args) {
-		/*
-		 * Instantiate the Machine Learning framework
-		 */
 		SanketML irisProblem = new SanketML();
 		try {
 			irisProblem.loadData("iris.data.txt", ",", 4);
@@ -25,13 +22,6 @@ public class MLMonk {
 		System.out.println(" Number of training samples = " + irisProblem.getTrainingData().size());
 		System.out.println(" Number of testing samples = " + irisProblem.getTestingData().size());
 
-		/*
-		 * This part should be done by the students. Implement your own version
-		 * of ClassificationEngine and compare accuracy you get.
-		 * 
-		 * 1. Instantiate the classificationEngine, 2. Report accuracy.
-		 * 
-		 */
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
 
@@ -39,11 +29,8 @@ public class MLMonk {
 		irisProblem.setClassificationEngine(classificationEngine);
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
 
-		/*
-		 * Implements k-means clustering algorithm.
-		 */
 		System.out.println("\n\n\n ############################  CLUSTERING  ###################################\n\n ");
-		int numClusters = 4;
+		int numClusters = 3;
 		ClusteringEngine clusterer = new ClusteringEngine();
 		try {
 			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), numClusters);
