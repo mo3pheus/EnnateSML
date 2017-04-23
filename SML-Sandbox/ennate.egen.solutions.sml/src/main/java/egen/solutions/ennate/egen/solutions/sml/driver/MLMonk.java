@@ -1,12 +1,15 @@
 package egen.solutions.ennate.egen.solutions.sml.driver;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import ennate.egen.solutions.sml.domain.ClassificationEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
+import ennate.egen.solutions.sml.domain.Result;
 
 public class MLMonk {
 
@@ -27,7 +30,19 @@ public class MLMonk {
 
 		ClassificationEngine.setDebugMode(true);
 		irisProblem.setClassificationEngine(classificationEngine);
-		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
+
+		ArrayList<Result> classifiedData = classificationEngine.classifyData(irisProblem.getTestingData());
+
+		for(Result sampleData: classifiedData) {
+			System.out.println("=============================");
+			System.out.println("sample ==> " + Arrays.toString(sampleData.getSample().getFields()));
+			System.out.println("sample class Id ==> " + sampleData.getSample().getClassId());
+			System.out.println("computed class Id ==> " + sampleData.getClassId());
+			System.out.println("pdf score of sample for class computed ==> " + sampleData.getConfidence());
+			System.out.println("=============================");
+		}
+
+		System.out.println("Classification Accuracy ==> " + irisProblem.getClassificationAccuracy(classifiedData));
 
 		System.out.println("\n\n\n ############################  CLUSTERING  ###################################\n\n ");
 		int numClusters = 3;

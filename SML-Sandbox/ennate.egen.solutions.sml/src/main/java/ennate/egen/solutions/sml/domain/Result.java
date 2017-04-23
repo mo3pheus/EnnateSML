@@ -3,6 +3,16 @@ package ennate.egen.solutions.sml.domain;
 public class Result {
 	private double confidence;
 	private String classId;
+	private Data sample;
+
+	public Data getSample() {
+		return sample;
+	}
+
+	public void setSample(Data sample) {
+		this.sample = sample;
+	}
+
 	public double getConfidence() {
 		return confidence;
 	}

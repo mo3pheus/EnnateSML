@@ -1,6 +1,8 @@
 package ennate.egen.solutions.sml.domain;
 
 
+import ennate.egen.solutions.sml.domain.Data;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -37,11 +39,12 @@ public class Model {
         // compute distance
         Double[] distance = computeDistance(data, numberOfFields, mean.getFields());
 
-        System.out.println("distance ==> " + distance.toString());
+        System.out.println("distance ==> " + Arrays.toString(distance));
 
         displayMEanAndStandardDeviation();
-        System.out.println(" Number of Fields = " + numberOfFields + " Mean Vector => " + mean.toString() + " StdDev Vector => "
-                + standardDeviation.toString());
+        System.out.println("Number of Fields => " + numberOfFields);
+        System.out.println("Mean Vector => " + mean.toString());
+        System.out.println("StdDev Vector => " + standardDeviation.toString());
         System.out.println("=============================================================================================================================================================================================");
     }
 

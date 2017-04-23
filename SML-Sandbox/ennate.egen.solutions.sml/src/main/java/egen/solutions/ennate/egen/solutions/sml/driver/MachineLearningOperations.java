@@ -126,23 +126,19 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	/**
 	 * This function gets the accuracy score by evaluating learnt models on
 	 * testSet.
-	 * 
+	 *
 	 * @return
 	 */
-	public double getAccuracy() {
-		int totalTest = testingSet.size();
-		int accurate = 0;
-		for (int i = 0; i < testingSet.size(); i++) {
-			Data testPoint = testingSet.get(i);
-			System.out.println("\n\n=============================== " + i + " =====================================");
-			Result result = classificationEngine.classify(testPoint);
-			if (testPoint.getClassId().equals(result.getClassId())) {
-				accurate++;
+	public double getClassificationAccuracy(ArrayList<Result> classifiedData) {
+		double accuracy = 0.0;
+
+		for(Result sample : classifiedData) {
+			if(sample.getSample().getClassId().equalsIgnoreCase(sample.getClassId())) {
+				accuracy++;
 			}
-			System.out.println("========================================================================");
 		}
 
-		return (double) (accurate / (double) totalTest) * 100.0d;
+		return accuracy * 100 / classifiedData.size();
 	}
 
 	/**

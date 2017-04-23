@@ -6,8 +6,7 @@ import java.util.Map;
 
 public class ClassificationEngine implements Classifier {
 
-    private ArrayList<Model> testModels;
-	private ArrayList<DataModel>	models;
+	private ArrayList<Model> models;
 	private static boolean			debug;
 
 	/**
@@ -24,8 +23,7 @@ public class ClassificationEngine implements Classifier {
 	 * fields.
 	 */
 	public void buildModels(ArrayList<Data> trainingData, int numberOfFields) {
-		models = new ArrayList<DataModel>();
-		testModels = new ArrayList<Model>();
+		models = new ArrayList<Model>();
 		Map<String, Integer> classMap = getClassMap(trainingData);
 		Object[] classIds = classMap.keySet().toArray();
 
@@ -37,8 +35,7 @@ public class ClassificationEngine implements Classifier {
 					temp.add(trainingData.get(j));
 				}
 			}
-			models.add(new DataModel(temp, numberOfFields));
-			testModels.add(new Model(temp, numberOfFields));
+			models.add(new Model(temp, numberOfFields));
 		}
 	}
 
@@ -48,60 +45,8 @@ public class ClassificationEngine implements Classifier {
 	 * 
 	 * @return
 	 */
-	public ArrayList<DataModel> getModles() {
+	public ArrayList<Model> getModles() {
 		return models;
-	}
-
-	/**
-	 * This function lets you classify the given sample.
-	 */
-	public Result classify(Data sample) {
-		Result id = new Result();
-		double maxPDF = Double.MIN_VALUE;
-		String classId = "";
-		for (int i = 0; i < models.size(); i++) {
-			double dist = ClassificationEngine.getPDFVal(sample, models.get(i));
-
-			if (dist > maxPDF) {
-				maxPDF = dist;
-				classId = models.get(i).getClassId();
-			}
-		}
-
-		id.setClassId(classId);
-		id.setConfidence(maxPDF);
-
-		printLine("Predicted classId = " + classId);
-		return id;
-	}
-
-	/**
-	 * This function gets the Probability Density Function value of a sample
-	 * with respect to the given model.
-	 * 
-	 * @param sample
-	 * @param model
-	 * @return
-	 */
-	public static double getPDFVal(Data sample, DataModel model) {
-		double distance = 0.0d;
-		Double[] stdDev = model.getStdDev().getFields();
-		Double[] mean = model.getMean().getFields();
-		Double[] sFields = sample.getFields();
-
-		for (int i = 0; i < stdDev.length; i++) {
-			double constant = 1.0d / Math.sqrt(2.0d * Math.PI * stdDev[i] * stdDev[i]);
-			double term = (-1.0d) * (sFields[i] - mean[i]) * (sFields[i] - mean[i]);
-			term /= (2.0d * stdDev[i] * stdDev[i]);
-			distance += constant * Math.exp(term);
-		}
-
-		printLine("Sample = " + sample.toString());
-		printLine("Model = " + model.toString());
-		printLine("PDF Score = " + distance);
-		printLine("------------------------------------------------------");
-
-		return distance;
 	}
 
 	/**
@@ -125,5 +70,47 @@ public class ClassificationEngine implements Classifier {
 		if (debug) {
 			System.out.println(s);
 		}
+	}
+
+	public Result classify(Data sample) {
+		Result result = new Result();
+
+		result.setSample(sample);
+
+		for(int j=0; j<models.size();j++) {
+			Double pdf = computePDFValue(sample, models.get(j));
+
+			if (result.getConfidence() < pdf) {
+				result.setConfidence(pdf);
+				result.setClassId(models.get(j).getClassId().toString());
+			}
+		}
+		return result;
+	}
+
+	public ArrayList<Result> classifyData(ArrayList<Data> data) {
+		ArrayList<Result> classifiedSamples = new ArrayList<Result>();
+
+		for(Data sample : data) {
+			classifiedSamples.add(classify(sample));
+		}
+
+		return classifiedSamples;
+	}
+
+	public Double computePDFValue(Data data, Model model) {
+		Double value = 0.0;
+		Double[] sample = data.getFields();
+		Double[] mean = model.getMean().getFields();
+		Double[] standardDeviation = model.getStandardDeviation().getFields();
+
+		for(int i=0; i<data.getFields().length; i++) {
+			Double variance = Math.pow(standardDeviation[i], 2);
+			Double difference = sample[i]-mean[i];
+
+			value += Math.exp(-Math.pow(difference, 2) /(2 * variance))/(Math.sqrt(2 * Math.PI) * standardDeviation[i]);
+		}
+
+		return value;
 	}
 }
