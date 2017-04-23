@@ -6,7 +6,18 @@ import java.util.Map;
 
 public class ClassificationEngine implements Classifier {
 
-	private ArrayList<JitendraDataModel> models;
+	private ArrayList<JitendraDataModel>	models;
+	private JitendraDataModel overallDataModel;
+	private static boolean			debug;
+
+	/**
+	 * Set debugMode
+	 *
+	 * @param debug
+	 */
+	public static void setDebugMode(boolean debugFlag) {
+		debug = debugFlag;
+	}
 
 	/**
 	 * This function builds models based on the trainingData and the number of
@@ -29,14 +40,28 @@ public class ClassificationEngine implements Classifier {
 		}
 	}
 
+
+
+	public void buildOverallModal(ArrayList<Data> trainingData, int numberOfFields) {
+		ArrayList<Data> temp = new ArrayList<>();
+		for (int j = 0; j < trainingData.size(); j++) {
+			temp
+					.add(trainingData.get(j));
+		}
+		overallDataModel = new JitendraDataModel(temp, numberOfFields);
+	}
+
 	/**
 	 * This function returns the built models. If buildModels() is not called.
 	 * This will return null.
-	 * 
+	 *
 	 * @return
 	 */
 	public ArrayList<JitendraDataModel> getModles() {
 		return models;
+	}
+	public JitendraDataModel getOverallDataModel() {
+		return overallDataModel;
 	}
 
 	/**
@@ -44,50 +69,56 @@ public class ClassificationEngine implements Classifier {
 	 */
 	public Result classify(Data sample) {
 		Result id = new Result();
-		double maxProb = Double.MIN_VALUE;
+		double maxPDF = Double.MIN_VALUE;
 		String classId = "";
 		for (int i = 0; i < models.size(); i++) {
-			double dist = ClassificationEngine.getDistance(sample, models.get(i));
+			double dist = ClassificationEngine.getPDFVal(sample, models.get(i));
 
-			if (dist > maxProb) {
-				maxProb = dist;
+			if (dist > maxPDF) {
+				maxPDF = dist;
 				classId = models.get(i).getClassId();
 			}
 		}
 
 		id.setClassId(classId);
-		id.setConfidence(maxProb);
+		id.setConfidence(maxPDF);
 
+		printLine("Predicted classId = " + classId);
 		return id;
 	}
 
 	/**
-	 * This function gets a distance measure from a sample to the given model.
-	 * 
+	 * This function gets the Probability Density Function value of a sample
+	 * with respect to the given model.
+	 *
 	 * @param sample
 	 * @param model
 	 * @return
 	 */
-	public static double getDistance(Data sample, JitendraDataModel model) {
+	public static double getPDFVal(Data sample, JitendraDataModel model) {
 		double distance = 0.0d;
 		Double[] stdDev = model.getStdDev().getFields();
 		Double[] mean = model.getMean().getFields();
 		Double[] sFields = sample.getFields();
 
 		for (int i = 0; i < stdDev.length; i++) {
-			double constant = 1.0d / (stdDev[i] * Math.sqrt(2.0d * Math.PI));
-			double term = (sFields[i] - mean[i]) / stdDev[i];
-			term *= term;
-			term *= -0.5d;
-			distance += (Math.pow(Math.E, term) * constant);
+			double constant = 1.0d / Math.sqrt(2.0d * Math.PI * stdDev[i] * stdDev[i]);
+			double term = (-1.0d) * (sFields[i] - mean[i]) * (sFields[i] - mean[i]);
+			term /= (2.0d * stdDev[i] * stdDev[i]);
+			distance += constant * Math.exp(term);
 		}
+
+		printLine("Sample = " + sample.toString());
+		printLine("Model = " + model.toString());
+		printLine("PDF Score = " + distance);
+		printLine("------------------------------------------------------");
 
 		return distance;
 	}
 
 	/**
 	 * This function returns a map of the data given.
-	 * 
+	 *
 	 * @param data
 	 * @return
 	 */
@@ -100,5 +131,11 @@ public class ClassificationEngine implements Classifier {
 		}
 
 		return classMap;
+	}
+
+	private static void printLine(String s) {
+		if (debug) {
+			System.out.println(s);
+		}
 	}
 }

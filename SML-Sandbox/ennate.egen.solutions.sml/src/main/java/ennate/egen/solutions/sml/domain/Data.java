@@ -26,6 +26,19 @@ public class Data {
 		classId = parts[i];
 	}
 
+	public Data(String content, String delimiter, int[] dimensions) throws NumberFormatException {
+		String[] parts = content.split(delimiter);
+		numberOfFields = dimensions.length;
+
+
+		fields = new Double[dimensions.length];
+		int i;
+		for (i = 0; i < dimensions.length; i++) {
+			fields[i] = Double.parseDouble(parts[dimensions[i]]);
+		}
+		classId = parts[parts.length-1];
+	}
+
 	public Data(int numberOfFields) {
 		this.numberOfFields = numberOfFields;
 		fields = new Double[numberOfFields];

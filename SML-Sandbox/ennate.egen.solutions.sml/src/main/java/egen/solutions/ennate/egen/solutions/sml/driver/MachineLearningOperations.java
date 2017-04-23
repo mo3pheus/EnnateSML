@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -18,6 +19,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	private ArrayList<Data>		trainingSet;
 	private ArrayList<Data>		testingSet;
 	private ArrayList<Data>		totalDataset;
+	private ArrayList<Data>		reducedDataset;
 	protected T					classificationEngine;
 	protected ClusteringEngine	clusteringEngine;
 
@@ -32,28 +34,28 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 
 	/**
 	 * Sets the classification engine
-	 * 
+	 *
 	 * @param classificationEngine
 	 */
 	public abstract void setClassificationEngine(T classificationEngine);
 
 	/**
 	 * Returns the classification Engine
-	 * 
+	 *
 	 * @return
 	 */
 	public abstract T getClassificationEngine();
 
 	/**
 	 * Returns clusteringEngine
-	 * 
+	 *
 	 * @return
 	 */
 	public abstract ClusteringEngine getClusterer();
 
 	/**
 	 * Sets the clusteringEngine
-	 * 
+	 *
 	 * @param clusteringEngine
 	 */
 	public abstract void setClusterer(ClusteringEngine clusteringEngine);
@@ -61,12 +63,12 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	/**
 	 * Loads the data from the given fileLocation. Data needs to be delimiter
 	 * separated with the last column showing the classId.
-	 * 
+	 *
 	 * @param fileLocation
 	 * @param delimiter
 	 * @param numberOfFields
 	 * @throws IOException
-	 * 
+	 *
 	 */
 	public void loadData(String fileLocation, String delimiter, int numberOfFields) throws IOException {
 		/*
@@ -89,10 +91,31 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		br.close();
 	}
 
+	public void loadReducedData(String fileLocation, String delimiter, int[] dimensions) throws IOException {
+		/*
+		 * Load the file
+		 */
+		File file = new File(this.getClass().getClassLoader().getResource(fileLocation).getPath());
+		reducedDataset = new ArrayList<Data>();
+
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			try {
+				Data temp = new Data(line, delimiter, dimensions);
+				reducedDataset.add(temp);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+		br.close();
+	}
+
 	/**
 	 * This function splits the complete data set into training and testing data
 	 * sets with the given percentage.
-	 * 
+	 *
 	 * @param trainPercent
 	 */
 	public void populateTrainTestSets(int trainPercent) {
@@ -126,7 +149,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	/**
 	 * This function gets the accuracy score by evaluating learnt models on
 	 * testSet.
-	 * 
+	 *
 	 * @return
 	 */
 	public double getAccuracy() {
@@ -134,12 +157,12 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		int accurate = 0;
 		for (int i = 0; i < testingSet.size(); i++) {
 			Data testPoint = testingSet.get(i);
+			System.out.println("\n\n=============================== " + i + " =====================================");
 			Result result = classificationEngine.classify(testPoint);
-			// System.out.println("Probability or confidence measure = " +
-			// result.getConfidence() );
 			if (testPoint.getClassId().equals(result.getClassId())) {
 				accurate++;
 			}
+			System.out.println("========================================================================");
 		}
 
 		return (double) (accurate / (double) totalTest) * 100.0d;
@@ -147,16 +170,20 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 
 	/**
 	 * Returns List of training data points
-	 * 
+	 *
 	 * @return
 	 */
 	public ArrayList<Data> getTotalDataset() {
 		return totalDataset;
 	}
 
+	public ArrayList<Data> getTotalReducedDataset() {
+		return reducedDataset;
+	}
+
 	/**
 	 * Returns List of testing data points
-	 * 
+	 *
 	 * @return
 	 */
 	public ArrayList<Data> getTestingData() {
@@ -174,7 +201,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 
 	/**
 	 * This function computes the total cost of the clustered points.
-	 * 
+	 *
 	 * @param map
 	 * @return
 	 * @throws Exception
