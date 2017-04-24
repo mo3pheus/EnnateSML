@@ -12,11 +12,15 @@ import ennate.egen.solutions.sml.domain.Classifier;
 import ennate.egen.solutions.sml.domain.ClusteringEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
-import ennate.egen.solutions.sml.domain.Result;
 
 public abstract class MachineLearningOperations<T extends Classifier> {
 	private ArrayList<Data>		trainingSet;
 	private ArrayList<Data>		testingSet;
+
+	public ArrayList<Data> getTotalDataset() {
+		return totalDataset;
+	}
+
 	private ArrayList<Data>		totalDataset;
 	protected T					classificationEngine;
 	protected ClusteringEngine	clusteringEngine;
@@ -121,24 +125,6 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 				trainingSet.add(temp);
 			}
 		}
-	}
-
-	/**
-	 * This function gets the accuracy score by evaluating learnt models on
-	 * testSet.
-	 *
-	 * @return
-	 */
-	public double getClassificationAccuracy(ArrayList<Result> classifiedData) {
-		double accuracy = 0.0;
-
-		for(Result sample : classifiedData) {
-			if(sample.getSample().getClassId().equalsIgnoreCase(sample.getClassId())) {
-				accuracy++;
-			}
-		}
-
-		return accuracy * 100 / classifiedData.size();
 	}
 
 	/**

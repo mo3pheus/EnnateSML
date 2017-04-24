@@ -31,13 +31,13 @@ public class Model {
         standardDeviation.setClassId(classId);
 
         // set mean
-        mean.setFields(computMean(data, numberOfFields));
+        mean.setFields(Utils.computMean(data, numberOfFields));
 
         // set standard deviation
-        standardDeviation.setFields(computeStandardDeviation(data, numberOfFields));
+        standardDeviation.setFields(Utils.computeStandardDeviation(data, numberOfFields, mean.getFields()));
 
         // compute distance
-        Double[] distance = computeDistance(data, numberOfFields, mean.getFields());
+        Double[] distance = Utils.computeDistance(data, numberOfFields, mean.getFields());
 
         System.out.println("distance ==> " + Arrays.toString(distance));
 
@@ -78,58 +78,6 @@ public class Model {
 
     public void setClassId(String classId) {
         this.classId = classId;
-    }
-
-    public Double[] computMean(ArrayList<Data> data, int noOfFields) {
-        Double[] intermediate = new Double[noOfFields];
-        Arrays.fill(intermediate, 0.0);
-
-        // compute sum per dimension
-
-        for(int i=0; i<data.size(); i++) {
-            for(int j=0; j<noOfFields; j++)  {
-                intermediate[j] += data.get(i).getFields()[j];
-            }
-        }
-
-        // compute mean per dimension
-
-        for(int k=0; k<noOfFields; k++) {
-            intermediate[k] = intermediate[k]/(data.size()-1);
-        }
-
-        return intermediate;
-    }
-
-    public Double[] computeStandardDeviation(ArrayList<Data> data, int noOfFields) {
-        Double[] intermediate = new Double[noOfFields];
-        Arrays.fill(intermediate, 0.0);
-
-        for(int i=0; i<data.size(); i++) {
-            for(int j=0; j<noOfFields; j++)  {
-                intermediate[j] += Math.pow(data.get(i).getFields()[j]-mean.getFields()[j], 2);
-            }
-        }
-
-        for(int k=0; k<noOfFields; k++) {
-            intermediate[k] = Math.sqrt(intermediate[k]/(data.size()-1));
-        }
-
-        return intermediate;
-    }
-
-    public Double[] computeDistance(ArrayList<Data> data, int noOfFields, Double[] meanValues) {
-        Double[] distance = new Double[data.size()];
-        Arrays.fill(distance, 0.0);
-
-        for(int i=0; i<data.size(); i++) {
-            for (int j=0; j<noOfFields; j++) {
-                distance[i] += Math.pow(meanValues[j] - data.get(i).getFields()[j], 2);
-            }
-            distance[i] = Math.sqrt(distance[i]);
-        }
-
-        return distance;
     }
 
     public String displayMEanAndStandardDeviation() {

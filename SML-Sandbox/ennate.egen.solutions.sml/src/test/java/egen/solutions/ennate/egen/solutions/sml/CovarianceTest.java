@@ -6,7 +6,7 @@ import java.util.Arrays;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import egen.solutions.ennate.egen.solutions.sml.driver.SanketML;
-import ennate.egen.solutions.sml.etl.PCAUtil;
+import ennate.egen.solutions.sml.domain.Utils;
 
 public class CovarianceTest {
 
@@ -16,18 +16,19 @@ public class CovarianceTest {
 			mlMonk.loadData("iris.data.txt",",", 4);
 			mlMonk.populateTrainTestSets(80);
 
-			double[][] covarMatrix = PCAUtil.getCovarianceMatrix(mlMonk.getTrainingData());
+			double[][] covarianceMatrix = Utils.computeCovarianceMatrix(mlMonk.getTotalDataset(), 4);
 			System.out.println("=============================================================");
 			System.out.println("Covariance Matrix:: ");
 			System.out.println("=============================================================");
-			printArrays(covarMatrix);
+			printArrays(covarianceMatrix);
 
-			Matrix matrix = new Matrix(covarMatrix);
+			Matrix matrix = new Matrix(covarianceMatrix);
 			System.out.println("=============================================================");
 			System.out.println("EigenValueDecomposition:: ");
 			System.out.println("=============================================================");
 			EigenvalueDecomposition ed = new EigenvalueDecomposition(matrix);
 			System.out.println(Arrays.toString(ed.getRealEigenvalues()));
+
 		} catch (IOException io) {
 			System.out.println(io.getMessage());
 		} catch (Exception e) {
