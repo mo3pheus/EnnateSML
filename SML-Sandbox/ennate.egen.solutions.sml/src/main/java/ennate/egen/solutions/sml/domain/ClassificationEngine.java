@@ -80,7 +80,7 @@ public class ClassificationEngine implements Classifier {
 	 * @param model
 	 * @return
 	 */
-	public static double getPDFVal(Data sample, DataModel model) {
+	public static double getPDFVal1(Data sample, DataModel model) {
 		double distance = 0.0d;
 		Double[] stdDev = model.getStdDev().getFields();
 		Double[] mean = model.getMean().getFields();
@@ -91,6 +91,25 @@ public class ClassificationEngine implements Classifier {
 			double term = (-1.0d) * (sFields[i] - mean[i]) * (sFields[i] - mean[i]);
 			term /= (2.0d * stdDev[i] * stdDev[i]);
 			distance += constant * Math.exp(term);
+		}
+
+		printLine("Sample = " + sample.toString());
+		printLine("Model = " + model.toString());
+		printLine("PDF Score = " + distance);
+		printLine("------------------------------------------------------");
+
+		return distance;
+	}
+
+	// My Code
+	public static double getPDFVal(Data sample, DataModel model) {
+		Double[] mean = model.getMean().getFields();
+		Double[] stdDeviation = model.getStdDev().getFields();
+		Double[] fields = sample.getFields();
+		double distance = 0.0;
+
+		for(int i=0;i<fields.length;i++) {
+			distance +=(1d / (stdDeviation[i] * (Math.sqrt(2 * Math.PI)))) * (Math.exp((-0.5 * Math.pow(((fields[i] - mean[i])/ stdDeviation[i]), 2))));
 		}
 
 		printLine("Sample = " + sample.toString());

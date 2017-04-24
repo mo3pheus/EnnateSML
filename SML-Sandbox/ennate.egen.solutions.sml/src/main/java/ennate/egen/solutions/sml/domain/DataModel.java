@@ -49,66 +49,50 @@ public class DataModel {
 	 * 
 	 * @param data
 	 */
+	//My Code
 	public DataModel(ArrayList<Data> data, int numberOfFields) {
+		this.classId = data.get(0).getClassId();
 		this.numberOfFields = numberOfFields;
 
-		/*
-		 * Get class id and sanity check
-		 */
-		if (data.isEmpty()) {
-			System.out.println("Data is empty.");
-			return;
-		} else {
-			classId = data.get(0).getClassId();
+		Double[] sumOfFields = new Double[numberOfFields];
+		Double[] meanOfFields = new Double[numberOfFields];
+		Double[] stdDeviationOfFields = new Double[numberOfFields];
+
+		for(int i=0; i< sumOfFields.length ; i++) {
+			sumOfFields[i] = 0.0d;
+			meanOfFields[i] = 0.0d;
+			stdDeviationOfFields[i] = 0.0d;
 		}
 
-		/*
-		 * Compute the mean and stdDev
-		 */
+		// compute mean
+		for(int i = 0; i< data.size();i++) {
+			for(int j=0;j<data.get(i).getFields().length;j++) {
+				sumOfFields[j] += data.get(i).getFields()[j];
+			}
+		}
+		for(int i=0; i< sumOfFields.length; i++) {
+			meanOfFields[i] = sumOfFields[i] / (data.size());
+		}
+
 		mean = new Data(numberOfFields);
+		mean.setFields(meanOfFields);
+		mean.setClassId(data.get(0).getClassId());
+
+		//compute standard deviation
+		for(int i=0;i<data.size();i++) {
+			for(int j=0;j<data.get(i).getFields().length;j++) {
+				stdDeviationOfFields[j] += Math.pow(meanOfFields[j] - data.get(i).getFields()[j], 2);
+			}
+		}
+
+		for(int i=0;i<stdDeviationOfFields.length;i++) {
+			stdDeviationOfFields[i] = Math.sqrt(stdDeviationOfFields[i] / (data.size()-1));
+
+		}
+
 		stdDev = new Data(numberOfFields);
-
-		/* compute the aggregate */
-		Double[] mFields = new Double[numberOfFields];
-		for (int j = 0; j < numberOfFields; j++) {
-			mFields[j] = 0.0d;
-		}
-
-		for (int i = 0; i < data.size(); i++) {
-			Data sample = data.get(i);
-			Double[] fields = sample.getFields();
-			for (int j = 0; j < fields.length; j++) {
-				mFields[j] += fields[j];
-			}
-		}
-
-		/* compute the mean */
-		for (int j = 0; j < numberOfFields; j++) {
-			mFields[j] /= ((double) data.size());
-		}
-		mean.setFields(mFields);
-
-		/* compute aggregate difference from mean squared */
-		Double[] stdDevFields = new Double[this.numberOfFields];
-		for (int j = 0; j < numberOfFields; j++) {
-			stdDevFields[j] = 0.0d;
-		}
-
-		for (int i = 0; i < data.size(); i++) {
-			Data sample = data.get(i);
-			Double[] fields = sample.getFields();
-			// for every field of the sample
-			for (int j = 0; j < fields.length; j++) {
-				stdDevFields[j] += (fields[j] - mean.getFields()[j]) * (fields[j] - mean.getFields()[j]);
-			}
-		}
-
-		/* compute the std dev */
-		for (int j = 0; j < this.numberOfFields; j++) {
-			stdDevFields[j] /= (double) data.size();
-			stdDevFields[j] = Math.sqrt(stdDevFields[j]);
-		}
-
-		stdDev.setFields(stdDevFields);
+		stdDev.setFields(stdDeviationOfFields);
+		stdDev.setClassId(data.get(0).getClassId());
 	}
+
 }

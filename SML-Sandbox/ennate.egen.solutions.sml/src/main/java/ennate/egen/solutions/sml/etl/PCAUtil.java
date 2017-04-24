@@ -1,8 +1,8 @@
 package ennate.egen.solutions.sml.etl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 import ennate.egen.solutions.sml.domain.Data;
 
 public class PCAUtil {
@@ -44,6 +44,7 @@ public class PCAUtil {
 		}
 
 		int numFields = dataSet.get(0).getFields().length;
+		//Data mean = findMean(dataSet);
 		Data mean = computeMean(dataSet);
 		List<Data> adjustedDataSet = new ArrayList<Data>();
 
@@ -103,6 +104,71 @@ public class PCAUtil {
 
 		for (int i = 0; i < numFields; i++) {
 			fields[i] /= dataSet.size();
+		}
+
+		mean.setFields(fields);
+		return mean;
+	}
+
+	//My Code
+	public static double[][] computeCovarianceMatrix(List<Data> dataSet) throws Exception {
+		if (dataSet.isEmpty() || dataSet == null) {
+			throw new Exception("Data set is empty");
+		}
+
+		int numOfFields = dataSet.get(0).getFields().length;
+		Data mean = findMean(dataSet);
+		List<Data> newDataSet = new ArrayList<Data>();
+		Double[] meanFields = mean.getFields();
+
+		for (int i = 0; i < dataSet.size(); i++) {
+			Double[] fields = dataSet.get(i).getFields();
+			for (int j = 0; j < fields.length; j++) {
+				fields[j] -= meanFields[j];
+			}
+
+			Data newData = new Data(numOfFields);
+			newData.setFields(fields);
+			newDataSet.add(newData);
+		}
+
+		double[][] covarinceMatrix = new double[numOfFields][numOfFields];
+		for(int i = 0; i <numOfFields; i++) {
+			for(int j=0;j < numOfFields; j++) {
+				for(int k = 0; k <newDataSet.size();k++) {
+					covarinceMatrix[i][j] += newDataSet.get(k).getFields()[i] * newDataSet.get(k).getFields()[i];
+				}
+			}
+		}
+
+		for(int i = 0;i<numOfFields;i++) {
+			for(int j=0;j<numOfFields;j++) {
+				covarinceMatrix[i][j] /= newDataSet.size() - 1;
+			}
+		}
+
+		return covarinceMatrix;
+	}
+
+	//My Code
+	public static Data findMean(List<Data> dataSet) throws Exception {
+		int numOfFields = dataSet.get(0).getFields().length;
+
+		Data mean = new Data(numOfFields);
+		Double[] fields = new Double[numOfFields];
+
+		for(int i = 0;i < numOfFields; i++) {
+			fields[i] = 0.0d;
+		}
+
+		for(int i = 0;i< dataSet.size();i++) {
+			for(int j = 0;j < dataSet.get(i).getFields().length; j++) {
+				fields[j] += dataSet.get(i).getFields()[j];
+			}
+		}
+
+		for(int i = 0;i < numOfFields; i++) {
+			fields[i] = fields[i] / (dataSet.size() - 1);
 		}
 
 		mean.setFields(fields);
