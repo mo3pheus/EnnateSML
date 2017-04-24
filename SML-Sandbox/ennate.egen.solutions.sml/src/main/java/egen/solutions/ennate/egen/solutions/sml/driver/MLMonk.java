@@ -6,6 +6,7 @@ import ennate.egen.solutions.sml.domain.Data;
 import ennate.egen.solutions.sml.domain.ShreedharClassificationEngine;
 import ennate.egen.solutions.sml.domain.ShreedharClusteringEngine;
 import ennate.egen.solutions.sml.domain.ShreedharPrincipleComponentAnalysis;
+import ennate.egen.solutions.sml.domain.ShreedharSentenceCompletion;
 
 import java.io.IOException;
 import java.util.Map;
@@ -35,6 +36,9 @@ public class MLMonk {
 		performClustering(irisProblem);
 		performClassification(irisProblem);
 		performPrincipleComponentAnalysis(irisProblem);
+
+		//Sentence Completion
+		ShreedharSentenceCompletion.compare();
 	}
 
 
