@@ -1,8 +1,9 @@
 package ennate.egen.solutions.sml.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import Jama.EigenvalueDecomposition;
+import Jama.Matrix;
+
+import java.util.*;
 
 public class ClassificationEngine implements Classifier {
 
@@ -63,8 +64,58 @@ public class ClassificationEngine implements Classifier {
 		return id;
 	}
 
+    public void performPrincipalComponentAnalysis(ArrayList<Model> data, int numberOfFields) {
+        double[][] covarianceMatrx = new double[numberOfFields][numberOfFields];
+        Double[] meanDataForEachColumn = new Double[numberOfFields];
 
-	/**
+        for (int columnIndex = 0; columnIndex < numberOfFields; columnIndex++) {
+            int n = data.size();
+            Double sumofValues = 0D;
+
+            for (int rowIndex = 0; rowIndex < data.size(); rowIndex++) {
+                sumofValues += data.get(rowIndex).getMeasurements()[columnIndex];
+            }
+
+            final Double meanValueForColumnIndex = sumofValues/(n);
+            meanDataForEachColumn[columnIndex] = meanValueForColumnIndex;
+        }
+
+
+        for (int matrixColumnIndex = 0; matrixColumnIndex < numberOfFields; matrixColumnIndex++) {
+            for (int matrixRowIndex = 0; matrixRowIndex < numberOfFields; matrixRowIndex++) {
+                Double matrixValue = getCovarianceForTwoColumns(data, meanDataForEachColumn, matrixColumnIndex, matrixRowIndex);
+                covarianceMatrx[matrixColumnIndex][matrixRowIndex] = matrixValue;
+            }
+        }
+
+        Matrix matrix = new Matrix(covarianceMatrx);
+        EigenvalueDecomposition decomposition = matrix.eig();
+        double[] eigenValues = decomposition.getRealEigenvalues();
+
+        for (double eigenValue : eigenValues) {
+            System.out.println("Eigen values: " + eigenValue);
+        }
+
+        double firstValue = Arrays.stream(eigenValues).max().orElseThrow(() ->  new RuntimeException("That's it, you have failed in life"));
+        double secondValue = Arrays.stream(eigenValues).filter(e -> e != firstValue).max().orElseThrow(() ->  new RuntimeException("That's it, you have failed in life"));
+
+        System.out.println("First PCA value: " + firstValue);
+        System.out.println("Second PCA value: " + secondValue);
+
+    }
+
+    private Double getCovarianceForTwoColumns(ArrayList<Model> data, Double[] meanData, int columnOne, int columnTwo) {
+        Double numerator = 0D;
+        for (Model dataRow : data) {
+            Double x = dataRow.getMeasurements()[columnOne];
+            Double y = dataRow.getMeasurements()[columnTwo];
+            numerator += ((x - meanData[columnOne]) * (y - meanData[columnTwo]));
+        }
+
+        return numerator/data.size();
+    }
+
+    /**
 	 * This function gets a distance measure from a sample to the given model.
 	 *
 	 * @param sample

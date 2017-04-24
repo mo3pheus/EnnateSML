@@ -1,6 +1,7 @@
 package egen.solutions.ennate.egen.solutions.sml.driver;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import ennate.egen.solutions.sml.domain.*;
@@ -26,19 +27,27 @@ public class MLMonk {
 		/*
 		 * This part should be done by the students. Implement your own version
 		 * of ClassificationEngine and compare accuracy you get.
-		 * 
+		 *
 		 * 1. Instantiate the classificationEngine, 2. Report accuracy.
-		 * 
+		 *
 		 */
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
 
+        // assignment-1
 		for (MachineLearningModel model : classificationEngine.getModles()) {
 			System.out.println(model.toString());
 		}
 		irisProblem.setClassificationEngine(classificationEngine);
 
+        // assignment-2
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
+
+        // assignment-3
+        ArrayList<Model> allData = new ArrayList<>();
+        allData.addAll(irisProblem.getTrainingData());
+        allData.addAll(irisProblem.getTestingData());
+        classificationEngine.performPrincipalComponentAnalysis(allData, 4);
 
 //		/*
 //		 * Implements k-means clustering algorithm.

@@ -5,4 +5,5 @@ import java.util.ArrayList;
 public interface Classifier {
 	void buildModels(ArrayList<Model> trainingData, int numberOfFields);
 	Result classify(Model sample);
+    void performPrincipalComponentAnalysis(ArrayList<Model> data, int noOfFieldsToConsider);
 }
