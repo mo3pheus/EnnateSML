@@ -17,4 +17,15 @@ public class Utils {
 
         return builder.toString();
     }
+
+    public static Double[][] initializeMatrix(Double[][] matrix, Integer rows, Integer columns) {
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrix[i][j] = 0.0d;
+            }
+        }
+
+        return matrix;
+    }
 }
