@@ -11,12 +11,16 @@ import java.util.concurrent.ThreadLocalRandom;
 import ennate.egen.solutions.sml.domain.Classifier;
 import ennate.egen.solutions.sml.domain.ClusteringEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
-import ennate.egen.solutions.sml.domain.Data;
-import ennate.egen.solutions.sml.domain.Result;
+import ennate.egen.solutions.sml.model.Data;
 
 public abstract class MachineLearningOperations<T extends Classifier> {
 	private ArrayList<Data>		trainingSet;
 	private ArrayList<Data>		testingSet;
+
+	public ArrayList<Data> getTotalDataset() {
+		return totalDataset;
+	}
+
 	private ArrayList<Data>		totalDataset;
 	protected T					classificationEngine;
 	protected ClusteringEngine	clusteringEngine;
@@ -59,7 +63,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	public abstract void setClusterer(ClusteringEngine clusteringEngine);
 
 	/**
-	 * Loads the data from the given fileLocation. Data needs to be delimiter
+	 * Loads the data from the given fileLocation. model needs to be delimiter
 	 * separated with the last column showing the classId.
 	 * 
 	 * @param fileLocation
@@ -121,28 +125,6 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 				trainingSet.add(temp);
 			}
 		}
-	}
-
-	/**
-	 * This function gets the accuracy score by evaluating learnt models on
-	 * testSet.
-	 * 
-	 * @return
-	 */
-	public double getAccuracy() {
-		int totalTest = testingSet.size();
-		int accurate = 0;
-		for (int i = 0; i < testingSet.size(); i++) {
-			Data testPoint = testingSet.get(i);
-			System.out.println("\n\n=============================== " + i + " =====================================");
-			Result result = classificationEngine.classify(testPoint);
-			if (testPoint.getClassId().equals(result.getClassId())) {
-				accurate++;
-			}
-			System.out.println("========================================================================");
-		}
-
-		return (double) (accurate / (double) totalTest) * 100.0d;
 	}
 
 	/**

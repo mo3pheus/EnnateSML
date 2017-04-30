@@ -1,5 +1,7 @@
 package ennate.egen.solutions.sml.domain;
 
+import ennate.egen.solutions.sml.model.Data;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -138,7 +140,7 @@ public class ClusteringEngine implements IClusterStuff {
 	}
 
 	/**
-	 * Computes the distance between two points of type Data.
+	 * Computes the distance between two points of type model.
 	 * 
 	 * @param a
 	 * @param b
