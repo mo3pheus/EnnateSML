@@ -1,4 +1,6 @@
-package ennate.egen.solutions.sml.domain;
+package ennate.egen.solutions.sml.utils;
+
+import ennate.egen.solutions.sml.model.Result;
 
 import java.util.ArrayList;
 import java.util.Arrays;

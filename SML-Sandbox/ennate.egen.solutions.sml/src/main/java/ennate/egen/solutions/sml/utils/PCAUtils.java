@@ -1,7 +1,9 @@
-package ennate.egen.solutions.sml.domain;
+package ennate.egen.solutions.sml.utils;
 
 
 import Jama.EigenvalueDecomposition;
+import ennate.egen.solutions.sml.model.Data;
+import ennate.egen.solutions.sml.model.PrincipalComponents;
 
 import java.util.ArrayList;
 import java.util.Collections;

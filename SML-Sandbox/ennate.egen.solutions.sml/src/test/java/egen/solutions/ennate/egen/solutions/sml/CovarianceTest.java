@@ -6,7 +6,7 @@ import java.util.Arrays;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import egen.solutions.ennate.egen.solutions.sml.driver.SanketML;
-import ennate.egen.solutions.sml.domain.Utils;
+import ennate.egen.solutions.sml.utils.Utils;
 
 public class CovarianceTest {
 

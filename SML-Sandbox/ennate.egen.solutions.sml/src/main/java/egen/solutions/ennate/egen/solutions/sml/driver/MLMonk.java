@@ -3,6 +3,8 @@ package egen.solutions.ennate.egen.solutions.sml.driver;
 import java.io.IOException;
 import java.util.Map;
 
+import ennate.egen.solutions.sml.model.Data;
+import ennate.egen.solutions.sml.utils.Utils;
 import ennate.egen.solutions.sml.domain.*;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 
@@ -31,7 +33,7 @@ public class MLMonk {
 		int numClusters = 3;
 		ClusteringEngine clusterer = new ClusteringEngine();
 		try {
-			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTrainingData(), numClusters);
+			Map<Data, ClusteredPoints> result = clusterer.clusterData(irisProblem.getTotalDataset(), numClusters);
 			irisProblem.setClusterer(clusterer);
 
 			for (Data centroid : result.keySet()) {

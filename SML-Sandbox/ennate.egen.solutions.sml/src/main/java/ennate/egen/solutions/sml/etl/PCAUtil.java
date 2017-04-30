@@ -3,7 +3,7 @@ package ennate.egen.solutions.sml.etl;
 import java.util.ArrayList;
 import java.util.List;
 
-import ennate.egen.solutions.sml.domain.Data;
+import ennate.egen.solutions.sml.model.Data;
 
 public class PCAUtil {
 
@@ -82,7 +82,7 @@ public class PCAUtil {
 	}
 
 	/**
-	 * Retuns the mean for each dimension of a dataset of type Data
+	 * Retuns the mean for each dimension of a dataset of type model
 	 * 
 	 */
 	public static Data computeMean(List<Data> dataSet) throws Exception {

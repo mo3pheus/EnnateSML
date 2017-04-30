@@ -1,7 +1,7 @@
-package ennate.egen.solutions.sml.domain;
+package ennate.egen.solutions.sml.model;
 
 
-import ennate.egen.solutions.sml.domain.Data;
+import ennate.egen.solutions.sml.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ public class Model {
         System.out.println("Models");
 
         if(data.isEmpty()) {
-            System.out.println("Data is empty");
+            System.out.println("model is empty");
             return;
         }
         classId = data.get(0).getClassId();

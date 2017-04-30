@@ -1,4 +1,4 @@
-package ennate.egen.solutions.sml.domain;
+package ennate.egen.solutions.sml.model;
 
 public class Result {
 	private double confidence;

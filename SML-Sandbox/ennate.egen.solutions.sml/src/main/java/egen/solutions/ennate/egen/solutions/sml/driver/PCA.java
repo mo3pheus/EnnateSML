@@ -1,8 +1,11 @@
-package ennate.egen.solutions.sml.domain;
+package egen.solutions.ennate.egen.solutions.sml.driver;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
-import egen.solutions.ennate.egen.solutions.sml.driver.SanketML;
+import ennate.egen.solutions.sml.model.Data;
+import ennate.egen.solutions.sml.model.PrincipalComponents;
+import ennate.egen.solutions.sml.utils.PCAUtils;
+import ennate.egen.solutions.sml.utils.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,10 +1,12 @@
 package ennate.egen.solutions.sml.domain;
 
+import ennate.egen.solutions.sml.model.Data;
+
 import java.util.ArrayList;
 
 public class DataModel {
 	private int		numberOfFields;
-	private Data	mean;
+	private Data mean;
 	private Data	stdDev;
 	private String	classId;
 
@@ -56,7 +58,7 @@ public class DataModel {
 		 * Get class id and sanity check
 		 */
 		if (data.isEmpty()) {
-			System.out.println("Data is empty.");
+			System.out.println("model is empty.");
 			return;
 		} else {
 			classId = data.get(0).getClassId();

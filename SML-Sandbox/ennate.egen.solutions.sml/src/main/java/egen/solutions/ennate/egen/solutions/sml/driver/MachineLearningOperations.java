@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import ennate.egen.solutions.sml.domain.Classifier;
 import ennate.egen.solutions.sml.domain.ClusteringEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
-import ennate.egen.solutions.sml.domain.Data;
+import ennate.egen.solutions.sml.model.Data;
 
 public abstract class MachineLearningOperations<T extends Classifier> {
 	private ArrayList<Data>		trainingSet;
@@ -63,7 +63,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	public abstract void setClusterer(ClusteringEngine clusteringEngine);
 
 	/**
-	 * Loads the data from the given fileLocation. Data needs to be delimiter
+	 * Loads the data from the given fileLocation. model needs to be delimiter
 	 * separated with the last column showing the classId.
 	 * 
 	 * @param fileLocation

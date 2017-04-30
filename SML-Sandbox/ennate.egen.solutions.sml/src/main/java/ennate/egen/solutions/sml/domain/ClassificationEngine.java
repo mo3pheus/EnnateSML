@@ -1,5 +1,9 @@
 package ennate.egen.solutions.sml.domain;
 
+import ennate.egen.solutions.sml.model.Data;
+import ennate.egen.solutions.sml.model.Model;
+import ennate.egen.solutions.sml.model.Result;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

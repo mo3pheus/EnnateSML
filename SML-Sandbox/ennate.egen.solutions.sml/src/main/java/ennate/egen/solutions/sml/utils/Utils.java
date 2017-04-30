@@ -1,4 +1,8 @@
-package ennate.egen.solutions.sml.domain;
+package ennate.egen.solutions.sml.utils;
+
+import ennate.egen.solutions.sml.domain.ClassificationEngine;
+import ennate.egen.solutions.sml.model.Data;
+import ennate.egen.solutions.sml.model.Result;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,18 +12,20 @@ public class Utils {
         Double[] intermediate = new Double[noOfFields];
         Arrays.fill(intermediate, 0.0);
 
-        // compute sum per dimension
+        if(data.size() > 0) {
+            // compute sum per dimension
 
-        for(int i=0; i<data.size(); i++) {
-            for(int j=0; j<noOfFields; j++)  {
-                intermediate[j] += data.get(i).getFields()[j];
+            for(int i=0; i<data.size(); i++) {
+                for(int j=0; j<noOfFields; j++)  {
+                    intermediate[j] += data.get(i).getFields()[j];
+                }
             }
-        }
 
-        // compute mean per dimension
+            // compute mean per dimension
 
-        for(int k=0; k<noOfFields; k++) {
-            intermediate[k] = intermediate[k]/(data.size()-1);
+            for(int k=0; k<noOfFields; k++) {
+                intermediate[k] = intermediate[k]/(data.size()-1);
+            }
         }
 
         return intermediate;
@@ -47,13 +53,19 @@ public class Utils {
         Arrays.fill(distance, 0.0);
 
         for(int i=0; i<data.size(); i++) {
-            for (int j=0; j<noOfFields; j++) {
-                distance[i] += Math.pow(meanValues[j] - data.get(i).getFields()[j], 2);
-            }
-            distance[i] = Math.sqrt(distance[i]);
+            distance[i] = getDistance(data.get(i).getFields(), meanValues, 4);
         }
 
         return distance;
+    }
+
+    public  static Double getDistance(Double[] data1, Double[] data2, int noOfFields) {
+        Double distance = 0.0;
+
+        for (int j=0; j<noOfFields; j++) {
+            distance += Math.pow(data2[j] - data1[j], 2);
+        }
+        return Math.sqrt(distance);
     }
 
     public static double[][] computeCovarianceMatrix(ArrayList<Data> data, int noOfFields) {
