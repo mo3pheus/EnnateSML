@@ -11,8 +11,8 @@ import java.util.Set;
 public class ShreedharNeuralNetwork {
 
     public static void main(String[] args) {
-        Integer numberOfInputNeurons = 0;
-        Integer numberOfHiddenNeurons = 0;
+        Integer numberOfInputNeurons = 2;
+        Integer numberOfHiddenNeurons = 2;
         try {
 
             Scanner scanner = new Scanner(System.in);
@@ -117,9 +117,7 @@ public class ShreedharNeuralNetwork {
 
                 System.out.println(String.format("OutPut of the Neuron:[%d] is [%f]", indexOfThisOutputNeuron, neuronOutput));
             }
-
         }
-
     }
 
 
