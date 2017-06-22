@@ -6,7 +6,8 @@ import java.util.Map;
 
 public class ClassificationEngine implements Classifier {
 
-	private ArrayList<DataModel>	models;
+	private ArrayList<DataModel> models;
+	private ArrayList<DataModelV2> modelsV2;
 	private static boolean			debug;
 
 	/**
@@ -39,6 +40,23 @@ public class ClassificationEngine implements Classifier {
 		}
 	}
 
+	public void buildModelsV2(ArrayList<Data> trainingData, int numberOfFields) {
+		modelsV2 = new ArrayList<DataModelV2>();
+		Map<String, Integer> classMap = getClassMap(trainingData);
+		Object[] classIds = classMap.keySet().toArray();
+
+		for (int i = 0; i < classIds.length; i++) {
+			ArrayList<Data> temp = new ArrayList<Data>();
+			for (int j = 0; j < trainingData.size(); j++) {
+				if ((trainingData.get(j) != null) && (trainingData.get(j).getClassId() != null)
+						&& (trainingData.get(j).getClassId().equals((String) classIds[i]))) {
+					temp.add(trainingData.get(j));
+				}
+			}
+			modelsV2.add(new DataModelV2(temp, numberOfFields));
+		}
+	}
+
 	/**
 	 * This function returns the built models. If buildModels() is not called.
 	 * This will return null.
@@ -47,6 +65,10 @@ public class ClassificationEngine implements Classifier {
 	 */
 	public ArrayList<DataModel> getModles() {
 		return models;
+	}
+
+	public ArrayList<DataModelV2> getModelsV2() {
+		return modelsV2;
 	}
 
 	/**
@@ -69,6 +91,25 @@ public class ClassificationEngine implements Classifier {
 		id.setConfidence(maxPDF);
 
 		printLine("Predicted classId = " + classId);
+		return id;
+	}
+
+	public Result classifyV2(Data sample) {
+		Result id = new Result();
+		double maxProb = Double.MIN_VALUE;
+		String classId = "";
+		for (int i = 0; i < modelsV2.size(); i++) {
+			double dist = ClassificationEngine.getDistanceV2(sample, modelsV2.get(i));
+
+			if (dist > maxProb) {
+				maxProb = dist;
+				classId = modelsV2.get(i).getClassId();
+			}
+		}
+
+		id.setClassId(classId);
+		id.setConfidence(maxProb);
+
 		return id;
 	}
 
@@ -99,6 +140,31 @@ public class ClassificationEngine implements Classifier {
 		printLine("------------------------------------------------------");
 
 		return distance;
+	}
+
+	public static double getDistanceV2(Data sample, DataModelV2 model) {
+		double distance = 0.0d;
+		Double[] variance = model.getVariance().getFields();
+		Double[] mean = model.getMean().getFields();
+		Double[] fields = sample.getFields();
+
+		for (int i = 0; i < mean.length; i++) {
+			distance += (1.0d / Math.sqrt(2.0d * Math.PI * variance[i]) ) * Math.exp( -1 * (fields[i] - mean[i]) * (fields[i] - mean[i])/ (2 *  variance[i]));
+		}
+
+		return distance;
+	}
+
+	public static double getEuclidianDistanceFromMean(Data sample, DataModelV2 model) {
+		double distance = 0.0d;
+		Double[] mean = model.getMean().getFields();
+		Double[] fields = sample.getFields();
+
+		for (int i = 0; i < mean.length; i++) {
+			distance += (mean[i] - fields[i]) * (mean[i] - fields[i]);
+		}
+
+		return Math.sqrt(distance);
 	}
 
 	/**

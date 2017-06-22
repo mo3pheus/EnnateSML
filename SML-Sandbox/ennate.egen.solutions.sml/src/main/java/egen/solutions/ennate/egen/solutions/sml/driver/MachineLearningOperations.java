@@ -13,6 +13,7 @@ import ennate.egen.solutions.sml.domain.ClusteringEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
 import ennate.egen.solutions.sml.domain.Result;
+import ennate.egen.solutions.sml.etl.KesavaUtil;
 
 public abstract class MachineLearningOperations<T extends Classifier> {
 	private ArrayList<Data>		trainingSet;
@@ -20,6 +21,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	private ArrayList<Data>		totalDataset;
 	protected T					classificationEngine;
 	protected ClusteringEngine	clusteringEngine;
+	private double totalDistance;
 
 	/**
 	 * Instantiates the class.
@@ -28,6 +30,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		trainingSet = new ArrayList<Data>();
 		testingSet = new ArrayList<Data>();
 		totalDataset = new ArrayList<Data>();
+		totalDistance = 0.0d;
 	}
 
 	/**
@@ -88,6 +91,39 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 
 		br.close();
 	}
+	
+	public void loadGeoData(String fileLocation, String delimiter, int numberOfFields) throws IOException {
+		/*
+		 * Load the file
+		 */
+		File file = new File(this.getClass().getClassLoader().getResource(fileLocation).getPath());
+		totalDataset = new ArrayList<Data>();
+		totalDistance = 0.0d;
+
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String line = null;
+		// discard first 6 lines they contain overhead information
+		int i = 0;
+		while(i < 6 && (line = br.readLine()) != null) {
+			i++;
+		}
+		i = 0;
+		while ((line = br.readLine()) != null) {
+			try {
+				Data temp = new Data(line, delimiter, numberOfFields);
+				totalDataset.add(temp);
+				if (i >= 1) {
+					totalDistance += KesavaUtil.getGreatCircleDistance(temp, totalDataset.get(totalDataset.size() - 2));
+				}
+				i++;
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+		br.close();
+	}
+
 
 	/**
 	 * This function splits the complete data set into training and testing data
@@ -145,6 +181,22 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		return (double) (accurate / (double) totalTest) * 100.0d;
 	}
 
+	public double getAccuracyV2() {
+			int totalTest = testingSet.size();
+			int accurate = 0;
+			for (int i = 0; i < testingSet.size(); i++) {
+				Data testPoint = testingSet.get(i);
+				Result result = classificationEngine.classifyV2(testPoint);
+				// System.out.println("Probability or confidence measure = " +
+				// result.getConfidence() );
+				if (testPoint.getClassId().equals(result.getClassId())) {
+					accurate++;
+				}
+			}
+
+			return (double) (accurate / (double) totalTest) * 100.0d;
+		}
+
 	/**
 	 * Returns List of training data points
 	 * 
@@ -161,6 +213,10 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 */
 	public ArrayList<Data> getTestingData() {
 		return testingSet;
+	}
+	
+	public ArrayList<Data> getTotalData() {
+		return totalDataset;
 	}
 
 	/**
@@ -192,5 +248,9 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 			}
 		}
 		return present;
+	}
+	
+	public double getTotalDistance() {
+		return totalDistance;
 	}
 }

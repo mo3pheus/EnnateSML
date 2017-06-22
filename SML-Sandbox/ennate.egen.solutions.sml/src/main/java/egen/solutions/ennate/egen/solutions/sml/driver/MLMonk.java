@@ -3,10 +3,8 @@ package egen.solutions.ennate.egen.solutions.sml.driver;
 import java.io.IOException;
 import java.util.Map;
 
-import ennate.egen.solutions.sml.domain.ClassificationEngine;
-import ennate.egen.solutions.sml.domain.ClusteringEngine;
+import ennate.egen.solutions.sml.domain.*;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
-import ennate.egen.solutions.sml.domain.Data;
 
 public class MLMonk {
 
@@ -24,10 +22,23 @@ public class MLMonk {
 
 		ClassificationEngine classificationEngine = new ClassificationEngine();
 		classificationEngine.buildModels(irisProblem.getTrainingData(), 4);
+		classificationEngine.buildModelsV2(irisProblem.getTrainingData(), 4);
+    
+    for (DataModel model : classificationEngine.getModles()) {
+			System.out.println(model.toString());
+		}
 
-		ClassificationEngine.setDebugMode(true);
+		System.out.println("models of v2");
+
+
+		for (DataModelV2 model : classificationEngine.getModelsV2()) {
+			System.out.println(model.toString());
+		}
+    
+    ClassificationEngine.setDebugMode(true);
 		irisProblem.setClassificationEngine(classificationEngine);
 		System.out.println("Accuracy Percentage = " + irisProblem.getAccuracy() + " % ");
+		System.out.println("Accuracy Percentage of Version 2= " + irisProblem.getAccuracyV2() + " % ");
 
 		System.out.println("\n\n\n ############################  CLUSTERING  ###################################\n\n ");
 		int numClusters = 3;
