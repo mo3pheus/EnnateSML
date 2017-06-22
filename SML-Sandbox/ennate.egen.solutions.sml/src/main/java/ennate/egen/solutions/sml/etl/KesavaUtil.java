@@ -19,6 +19,7 @@ import org.json.simple.parser.ParseException;
 import egen.solutions.ennate.egen.solutions.sml.driver.SanketML;
 import ennate.egen.solutions.sml.domain.ClassificationEngine;
 import ennate.egen.solutions.sml.domain.Data;
+import ennate.egen.solutions.sml.domain.Data;
 
 /**
  * @author ktalabattula
@@ -116,6 +117,17 @@ public class KesavaUtil {
 		}
 		return distance;
 	}
+	
+	private static Double evaluateGeoClusterDistance(Map<Data, List<Data>> clusterMap) {
+		Double distance = 0.0d;
+		for(Data centroid: clusterMap.keySet()) {
+			for(Data data: clusterMap.get(centroid)) {
+				distance += getGreatCircleDistance(data, centroid);
+			}
+		}
+		return distance;
+	}
+
 
 	private static Map<Data, List<Data>> mapCentroids(ArrayList<Data> totalDataset, int noOfFields, int noOfClusters, Random random) {
 		double distanceFromPreviousCentroids = 0.0d;
@@ -183,6 +195,27 @@ public class KesavaUtil {
 			int index = 0;
 			for (int i = 1; i < size; i++) {
 				double temp = getEuclidianDistanceBetweenPoints(centroids[i], data);
+				if (distance > temp) {
+					distance = temp;
+					index = i;
+				}
+			}
+			data.setClassId(centroids[index].getClassId());
+			result.get(centroids[index]).add(data);
+		}
+		return result;
+	}
+	
+	private static Map<Data, List<Data>> classifyGeoClusters(Map<Data, List<Data>> result, ArrayList<Data> totalDataset,
+			int noOfFields) {
+		Data[] centroids = result.keySet().toArray(new Data[result.keySet().size()]);
+		int size = centroids.length;
+		
+		for(Data data: totalDataset) {
+			double distance = getGreatCircleDistance(centroids[0], data);
+			int index = 0;
+			for (int i = 1; i < size; i++) {
+				double temp = getGreatCircleDistance(centroids[i], data);
 				if (distance > temp) {
 					distance = temp;
 					index = i;
@@ -290,5 +323,90 @@ public class KesavaUtil {
 		}
 		
 		return Math.sqrt(magnitude);
+	}
+
+	public static Map<Data, List<Data>> evaluateGeoKClusterWithNClusters(int noOfFields, SanketML beijingClassfier,
+			Random random, int noOfClusters) {
+		List<Double>clusterDistance = new ArrayList<Double>();
+		double previousDistance = 0.0d;
+		double currentDistance = 0.0d;
+		double percentChange = 0.0d;
+		ArrayList<Data> totalDataset = beijingClassfier.getTotalData();
+		Map<Data, List<Data>> clusterMap;
+		
+		System.out.println("*******************************************************************************************");
+		System.out.println("*************************** K-Mean Clustering with clusters: "+ noOfClusters + "****************************");
+		System.out.println("*******************************************************************************************");
+		
+		do {
+			clusterMap = mapGeoCentroids(totalDataset, noOfFields, noOfClusters, random);
+			currentDistance = evaluateGeoClusterDistance(clusterMap);
+			percentChange = (currentDistance - previousDistance)/currentDistance;
+			percentChange = percentChange < 0 ? (0 - percentChange) : percentChange;
+			clusterDistance.add(currentDistance);
+			previousDistance = currentDistance;
+		} while (percentChange > TOLERABLE_LOW_VALUE);
+		
+		System.out.println("*******************************************************************************************");
+		System.out.println("****************************** K-Mean Clustering completed ********************************");
+		System.out.println("*******************************************************************************************");
+		
+		return clusterMap;
+	}
+
+	private static Map<Data, List<Data>> mapGeoCentroids(ArrayList<Data> totalDataset, int noOfFields, int noOfClusters,
+			Random random) {
+		double distanceFromPreviousCentroids = 0.0d;
+		Map<Data, List<Data>> result = new HashMap<Data, List<Data>>();
+		Data[] means = new Data[noOfClusters]; 
+		int sizeOfDataset = totalDataset.size();
+		
+		for(int i = 0; i < noOfClusters; i++) {
+			Data centroid = new Data(noOfFields);
+			Data mean = new Data(noOfFields);
+			centroid.setClassId("Class: " + i);
+			mean.setClassId("Class: " + i);
+			centroid.setFields(totalDataset.get(random.nextInt(sizeOfDataset)).getFields());
+			mean.setFields(centroid.getFields());
+			result.put(centroid, new ArrayList<Data>());
+			means[i] = mean;
+		}
+		
+		do {
+			result = classifyGeoClusters(result, totalDataset, noOfFields);
+			int index = 0;
+			distanceFromPreviousCentroids = 0.0d;
+			for(Data centroid: result.keySet()) {
+				means[index] = calculateMean(result.get(centroid), centroid);
+				distanceFromPreviousCentroids += getGreatCircleDistance(means[index], centroid);
+				centroid.setFields(means[index].getFields());
+				index++;
+			}
+		} while(distanceFromPreviousCentroids > TOLERABLE_LOW_VALUE);
+			
+		return result;
+	}
+	
+	/**
+	 * get Great circle distance between two points in miles
+	 * 
+	 * https://github.com/mlnorman/Intro-To-Java-Programming/blob/master/Chp4/Exercise_04_02.java
+	 * 
+	 * @param source
+	 * @param destination
+	 * @return
+	 */
+	public static double getGreatCircleDistance(Data source, Data destination) {
+		double source_latitude = source.getFields()[0];
+		double source_longitude = source.getFields()[1];
+		double dest_latitude = destination.getFields()[0];
+		double dest_longitude = destination.getFields()[1];
+		
+		return 6371.01 * 0.621371 * Math.acos((
+            Math.sin(Math.toRadians(source_latitude)) *
+            Math.sin(Math.toRadians(source_longitude))) +
+            (Math.cos(Math.toRadians(source_latitude)) * 
+            Math.cos(Math.toRadians(source_longitude)) * 
+            Math.cos(Math.toRadians(dest_longitude) - Math.toRadians(dest_latitude))));
 	}
 }
