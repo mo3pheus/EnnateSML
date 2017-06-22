@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ennate.egen.solutions.sml.domain.Classifier;
@@ -22,6 +20,9 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	private ArrayList<Data>		reducedDataset;
 	protected T					classificationEngine;
 	protected ClusteringEngine	clusteringEngine;
+	private HashMap<String, ArrayList<String>> trainingGenreToMovie;
+	private HashMap<String, ArrayList<String>> testingGenreToMovie;
+	private HashMap<String, String> movieDataset;
 
 	/**
 	 * Instantiates the class.
@@ -91,6 +92,36 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		br.close();
 	}
 
+	public void loadMoviesData(String fileLocation, String delimiter) throws IOException {
+		File file = new File(this.getClass().getClassLoader().getResource(fileLocation).getPath());
+
+		movieDataset = new HashMap<>();
+
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String line = null;
+		br.readLine();
+		while ((line = br.readLine()) != null) {
+			try {
+				String[] content = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+				/*
+		        * Sanity check
+		        */
+				if (content.length != 3) {
+					System.out.println(
+							"Corrupted string passed in" + content + " expected fields length is 3 ");
+					return;
+				}
+				if (!content[2].contains("|") && content[2].matches("Action|Comedy|Romance|Drama|Horror")) {
+					movieDataset.put(content[1], content[2]);
+				}
+
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+	}
+
 	public void loadReducedData(String fileLocation, String delimiter, int[] dimensions) throws IOException {
 		/*
 		 * Load the file
@@ -119,6 +150,7 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 * @param trainPercent
 	 */
 	public void populateTrainTestSets(int trainPercent) {
+
 		if (trainPercent >= 100) {
 			System.out.println("Using entire data for training causes no learning!");
 		}
@@ -142,6 +174,51 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 				testingSet.add(temp);
 			} else {
 				trainingSet.add(temp);
+			}
+		}
+	}
+
+	public void populateTrainTestMovieSets(int trainPercent) {
+		trainingGenreToMovie = new HashMap<>();
+		testingGenreToMovie = new HashMap<>();
+		if (trainPercent >= 100) {
+			System.out.println("Using entire data for training causes no learning!");
+		}
+
+		int trainSamplesCount = (int) (movieDataset.size() * trainPercent / 100.0d);
+		int testSamplesCount = movieDataset.size() - trainSamplesCount;
+		int[] testIndices = new int[testSamplesCount];
+
+		int numFilled = 0;
+		List<String> movies = new ArrayList<>(movieDataset.keySet());
+		while (numFilled != testSamplesCount) {
+			int randomNum = ThreadLocalRandom.current().nextInt(0, movies.size() + 1);
+			if (!alreadyPresent(randomNum, testIndices)) {
+				testIndices[numFilled] = randomNum;
+				numFilled++;
+			}
+		}
+
+		for (int i = 0; i < movies.size(); i++) {
+			String movie = movies.get(i);
+			String genre= movieDataset.get(movie);
+			if (alreadyPresent(i, testIndices)) {
+				if (testingGenreToMovie.containsKey(genre)) {
+					testingGenreToMovie.get(genre).add(movie);
+				} else {
+					ArrayList<String> list = new ArrayList<>();
+					list.add(movie);
+					testingGenreToMovie.put(genre, list);
+				}
+
+			} else {
+				if (trainingGenreToMovie.containsKey(genre)) {
+					trainingGenreToMovie.get(genre).add(movie);
+				} else {
+					ArrayList<String> list = new ArrayList<>();
+					list.add(movie);
+					trainingGenreToMovie.put(genre, list);
+				}
 			}
 		}
 	}
@@ -175,6 +252,18 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 	 */
 	public ArrayList<Data> getTotalDataset() {
 		return totalDataset;
+	}
+
+	public HashMap<String, ArrayList<String>> getTrainingGenreToMovie() {
+		return trainingGenreToMovie;
+	}
+
+	public HashMap<String, ArrayList<String>> getTestingGenreToMovie() {
+		return testingGenreToMovie;
+	}
+
+	public HashMap<String, String> getMovieDataset() {
+		return movieDataset;
 	}
 
 	public ArrayList<Data> getTotalReducedDataset() {

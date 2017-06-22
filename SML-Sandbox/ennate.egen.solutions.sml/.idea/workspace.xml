@@ -23,21 +23,99 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="GeneralizedNeuralNetworks.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/GeneralizedNeuralNetworks.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.2067988">
+              <caret line="280" column="24" selection-start-line="280" selection-start-column="24" selection-end-line="280" selection-end-column="24" />
+              <folding>
+                <element signature="class#Neuron#0;class#GeneralizedNeuralNetworks#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="JitendraClassifier.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/JitendraClassifier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2222223">
-              <caret line="4" column="61" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="146" column="25" selection-start-line="146" selection-start-column="25" selection-end-line="146" selection-end-column="25" />
+              <folding>
+                <element signature="method#calculateDistance#0;class#JitendraClassifier#0" expanded="false" />
+                <element signature="method#calculateCovarianceBetweenFields#0;class#JitendraClassifier#0" expanded="false" />
+                <element signature="method#getAccuracy#0;class#JitendraClassifier#0" expanded="false" />
+                <element signature="method#getSortedTree#0;class#JitendraClassifier#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MovieRecommendationEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MovieRecommendationEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="215" column="28" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Data.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/Data.java">
+      <file leaf-file-name="iris.data.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/iris.data.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+              <caret line="44" column="15" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JitendraKMeansClustering.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/JitendraKMeansClustering.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="62" column="23" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClusteringEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/ClusteringEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassificationEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/ClassificationEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
+              <folding>
+                <element signature="docComment;method#setDebugMode#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="docComment;method#buildModels#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="method#buildModels#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="method#buildOverallModal#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="docComment;method#getModles#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="docComment;method#classify#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="docComment;method#getPDFVal#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="docComment;method#getClassMap#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="method#getClassMap#0;class#ClassificationEngine#0" expanded="false" />
+                <element signature="method#printLine#0;class#ClassificationEngine#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MLMonk.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MLMonk.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="69" selection-start-line="43" selection-start-column="69" selection-end-line="43" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -47,69 +125,21 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MachineLearningOperations.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="104" column="34" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
+              <caret line="237" column="53" selection-start-line="237" selection-start-column="53" selection-end-line="237" selection-end-column="53" />
               <folding>
-                <element signature="e#4815#4816#0" expanded="true" />
-                <element signature="e#4841#4842#0" expanded="true" />
-                <element signature="e#4893#4894#0" expanded="true" />
-                <element signature="e#4921#4922#0" expanded="true" />
+                <element signature="method#loadReducedData#0;class#MachineLearningOperations#0" expanded="false" />
                 <element signature="method#getCostFunction#0;class#MachineLearningOperations#0" expanded="false" />
-                <element signature="method#alreadyPresent#0;class#MachineLearningOperations#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JitendraKMeansClustering.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/JitendraKMeansClustering.java">
+      <file leaf-file-name="Classifier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/Classifier.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3697916">
-              <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CosineSImilarity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/CosineSImilarity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SanketML.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/SanketML.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MLMonk.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MLMonk.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="87" selection-start-line="51" selection-start-column="87" selection-end-line="51" selection-end-column="87" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -152,15 +182,20 @@
         <option value="$PROJECT_DIR$/.project" />
         <option value="$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/DataModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MLMonk.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/iris.data.txt" />
         <option value="$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/JitendraDataModel.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/JitendraClassifier.java" />
         <option value="$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/ClassificationEngine.java" />
         <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/CosineSImilarity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MachineLearningOperations.java" />
         <option value="$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/Data.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/Knapsack.java" />
+        <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MachineLearningOperations.java" />
+        <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MovieRecommendationEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/NeuralNetworks.java" />
+        <option value="$PROJECT_DIR$/neuralNetworkOutput.txt" />
+        <option value="$PROJECT_DIR$/src/main/resources/iris.data.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/GeneralizedNeuralNetworks.java" />
       </list>
     </option>
   </component>
@@ -189,7 +224,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="805" />
+    <option name="height" value="803" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -216,8 +251,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -360,7 +394,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -368,54 +403,19 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="ji&#9;FILE&#9;file:///Users/jmalakalapalli/projects/EnnateSML/SML-Sandbox/ennate.egen.solutions.sml/src/main/java/ennate/egen/solutions/sml/domain/JitendraDataModel.java&#10;ml&#9;FILE&#9;file:///Users/jmalakalapalli/projects/EnnateSML/SML-Sandbox/ennate.egen.solutions.sml/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MLMonk.java&#10;mlm&#9;RUN_CONFIGURATION&#9;MLMonk&#10;data&#9;PSI&#9;JAVA://ennate.egen.solutions.sml.domain.Data&#10;classif&#9;PSI&#9;JAVA://ennate.egen.solutions.sml.domain.ClassificationEngine&#10;machin&#9;FILE&#9;file:///Users/jmalakalapalli/projects/EnnateSML/SML-Sandbox/ennate.egen.solutions.sml/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MachineLearningOperations.java" />
+    <property name="SearchEverywhereHistoryKey" value="neuralNetworkOutput.txt&#9;FILE&#9;file:///Users/jmalakalapalli/projects/EnnateSML/SML-Sandbox/ennate.egen.solutions.sml/neuralNetworkOutput.txt&#10;ji&#9;FILE&#9;file:///Users/jmalakalapalli/projects/EnnateSML/SML-Sandbox/ennate.egen.solutions.sml/src/main/java/ennate/egen/solutions/sml/domain/JitendraDataModel.java&#10;ml&#9;FILE&#9;file:///Users/jmalakalapalli/projects/EnnateSML/SML-Sandbox/ennate.egen.solutions.sml/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MLMonk.java&#10;mlm&#9;RUN_CONFIGURATION&#9;MLMonk&#10;data&#9;PSI&#9;JAVA://ennate.egen.solutions.sml.domain.Data&#10;classif&#9;PSI&#9;JAVA://ennate.egen.solutions.sml.domain.ClassificationEngine&#10;machin&#9;FILE&#9;file:///Users/jmalakalapalli/projects/EnnateSML/SML-Sandbox/ennate.egen.solutions.sml/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MachineLearningOperations.java" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/Personal/Projects_For_Practice/Spring/Ch1" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v4.7.2/bin/node" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.JitendraKMeansClustering">
-    <configuration default="false" name="MLMonk" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="egen.solutions.ennate.egen.solutions.sml.driver.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="egen.solutions.ennate.egen.solutions.sml.driver.MLMonk" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="ennate.egen.solutions.sml" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="JitendraClassifier" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="egen.solutions.ennate.egen.solutions.sml.driver.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="egen.solutions.ennate.egen.solutions.sml.driver.JitendraClassifier" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="ennate.egen.solutions.sml" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.GeneralizedNeuralNetworks">
     <configuration default="false" name="JitendraKMeansClustering" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -436,14 +436,74 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="CosineSImilarity" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="NeuralNetworks" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="egen.solutions.ennate.egen.solutions.sml.driver.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="egen.solutions.ennate.egen.solutions.sml.driver.CosineSImilarity" />
+      <option name="MAIN_CLASS_NAME" value="egen.solutions.ennate.egen.solutions.sml.driver.NeuralNetworks" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ennate.egen.solutions.sml" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="MovieRecommendationEngine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="egen.solutions.ennate.egen.solutions.sml.driver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="egen.solutions.ennate.egen.solutions.sml.driver.MovieRecommendationEngine" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ennate.egen.solutions.sml" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Knapsack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="egen.solutions.ennate.egen.solutions.sml.driver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="egen.solutions.ennate.egen.solutions.sml.driver.Knapsack" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ennate.egen.solutions.sml" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="GeneralizedNeuralNetworks" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="egen.solutions.ennate.egen.solutions.sml.driver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="egen.solutions.ennate.egen.solutions.sml.driver.GeneralizedNeuralNetworks" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1054,18 +1114,20 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Application.MLMonk" />
-      <item index="1" class="java.lang.String" itemvalue="Application.JitendraClassifier" />
-      <item index="2" class="java.lang.String" itemvalue="Application.JitendraKMeansClustering" />
-      <item index="3" class="java.lang.String" itemvalue="Application.CosineSImilarity" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Application.JitendraKMeansClustering" />
+      <item index="1" class="java.lang.String" itemvalue="Application.NeuralNetworks" />
+      <item index="2" class="java.lang.String" itemvalue="Application.MovieRecommendationEngine" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Knapsack" />
+      <item index="4" class="java.lang.String" itemvalue="Application.GeneralizedNeuralNetworks" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.JitendraKMeansClustering" />
-        <item index="1" class="java.lang.String" itemvalue="Application.CosineSImilarity" />
-        <item index="2" class="java.lang.String" itemvalue="Application.JitendraClassifier" />
-        <item index="3" class="java.lang.String" itemvalue="Application.MLMonk" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.GeneralizedNeuralNetworks" />
+        <item index="1" class="java.lang.String" itemvalue="Application.NeuralNetworks" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MovieRecommendationEngine" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Knapsack" />
+        <item index="4" class="java.lang.String" itemvalue="Application.JitendraKMeansClustering" />
       </list>
     </recent_temporary>
   </component>
@@ -1084,41 +1146,57 @@
       <workItem from="1491858255145" duration="6361000" />
       <workItem from="1491881632090" duration="9372000" />
       <workItem from="1491945432889" duration="10743000" />
-      <workItem from="1492984145763" duration="720000" />
+      <workItem from="1492984145763" duration="1196000" />
+      <workItem from="1493068216844" duration="1275000" />
+      <workItem from="1493235524305" duration="616000" />
+      <workItem from="1493236742723" duration="3796000" />
+      <workItem from="1493479507175" duration="25462000" />
+      <workItem from="1494100111070" duration="12653000" />
+      <workItem from="1494197621816" duration="535000" />
+      <workItem from="1494339975244" duration="482000" />
+      <workItem from="1494449979377" duration="4140000" />
+      <workItem from="1494694828814" duration="23054000" />
+      <workItem from="1494879049944" duration="3448000" />
+      <workItem from="1494943919978" duration="6000" />
+      <workItem from="1494960192615" duration="2122000" />
+      <workItem from="1494964768920" duration="4324000" />
+      <workItem from="1496005800243" duration="4463000" />
+      <workItem from="1496955879052" duration="1209000" />
+      <workItem from="1498173562154" duration="288000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28732000" />
+    <option name="totallyTimeSpent" value="117081000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="805" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="23" width="1440" height="803" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113018595" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13590844" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3884993" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17446809" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25245443" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46413502" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25250357" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21387696" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39148936" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39432624" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32765958" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.529078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19432624" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1170,6 +1248,48 @@
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/Knapsack.java</url>
+          <line>51</line>
+          <properties />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MovieRecommendationEngine.java</url>
+          <line>163</line>
+          <properties />
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MovieRecommendationEngine.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/NeuralNetworks.java</url>
+          <line>106</line>
+          <properties />
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/GeneralizedNeuralNetworks.java</url>
+          <line>252</line>
+          <properties />
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/SanketML.java</url>
+          <line>24</line>
+          <properties />
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/SanketML.java</url>
+          <line>19</line>
+          <properties />
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -1181,7 +1301,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="22" />
+      <option name="time" value="71" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1194,7 +1314,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="138" column="24" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1203,12 +1322,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="97" column="16" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
           <folding>
-            <element signature="e#4815#4816#0" expanded="true" />
-            <element signature="e#4841#4842#0" expanded="true" />
-            <element signature="e#4893#4894#0" expanded="true" />
-            <element signature="e#4921#4922#0" expanded="true" />
+            <element signature="method#loadReducedData#0;class#MachineLearningOperations#0" expanded="false" />
             <element signature="method#getCostFunction#0;class#MachineLearningOperations#0" expanded="false" />
-            <element signature="method#alreadyPresent#0;class#MachineLearningOperations#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1217,7 +1332,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#calculateDistance#0;class#JitendraClassifier#0" expanded="false" />
+            <element signature="method#calculateCovarianceBetweenFields#0;class#JitendraClassifier#0" expanded="false" />
+            <element signature="method#getAccuracy#0;class#JitendraClassifier#0" expanded="false" />
+            <element signature="method#getSortedTree#0;class#JitendraClassifier#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1225,7 +1345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1233,9 +1352,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1243,9 +1359,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="87" selection-start-line="51" selection-start-column="87" selection-end-line="51" selection-end-column="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1254,14 +1368,16 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
           <folding>
-            <element signature="e#405#406#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#852#858#0" expanded="true" />
-            <element signature="e#1659#1660#0" expanded="true" />
-            <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#1729#1730#0" expanded="true" />
-            <element signature="e#1759#1760#0" expanded="true" />
-            <element signature="e#3411#3428#0" expanded="true" />
+            <element signature="docComment;method#setDebugMode#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#buildModels#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#buildModels#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#buildOverallModal#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getModles#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#classify#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getPDFVal#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getClassMap#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#getClassMap#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#printLine#0;class#ClassificationEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1285,9 +1401,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1295,9 +1409,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="44" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1305,64 +1416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5014" column="30" selection-start-line="5014" selection-start-column="24" selection-end-line="5014" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#227755#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#3370#3371#0" expanded="false" />
-            <element signature="e#3446#3447#0" expanded="false" />
-            <element signature="e#5027#5028#0" expanded="false" />
-            <element signature="e#5098#5099#0" expanded="false" />
-            <element signature="e#6903#6904#0" expanded="false" />
-            <element signature="e#6974#6975#0" expanded="false" />
-            <element signature="e#8781#8782#0" expanded="false" />
-            <element signature="e#8852#8853#0" expanded="false" />
-            <element signature="e#10659#10660#0" expanded="false" />
-            <element signature="e#10730#10731#0" expanded="false" />
-            <element signature="e#12536#12537#0" expanded="false" />
-            <element signature="e#12595#12596#0" expanded="false" />
-            <element signature="e#14928#14929#0" expanded="false" />
-            <element signature="e#14999#15000#0" expanded="false" />
-            <element signature="e#17889#17890#0" expanded="false" />
-            <element signature="e#17960#17961#0" expanded="false" />
-            <element signature="e#84738#84739#0" expanded="false" />
-            <element signature="e#84795#84796#0" expanded="false" />
-            <element signature="e#88329#88330#0" expanded="false" />
-            <element signature="e#88386#88387#0" expanded="false" />
-            <element signature="e#91921#91922#0" expanded="false" />
-            <element signature="e#91978#91979#0" expanded="false" />
-            <element signature="e#95523#95524#0" expanded="false" />
-            <element signature="e#95580#95581#0" expanded="false" />
-            <element signature="e#99118#99119#0" expanded="false" />
-            <element signature="e#99175#99176#0" expanded="false" />
-            <element signature="e#102793#102794#0" expanded="false" />
-            <element signature="e#102850#102851#0" expanded="false" />
-            <element signature="e#107069#107070#0" expanded="false" />
-            <element signature="e#107126#107127#0" expanded="false" />
-            <element signature="e#111724#111725#0" expanded="false" />
-            <element signature="e#111781#111782#0" expanded="false" />
-            <element signature="e#177013#177014#0" expanded="false" />
-            <element signature="e#177054#177055#0" expanded="false" />
-            <element signature="e#177353#177354#0" expanded="false" />
-            <element signature="e#177410#177411#0" expanded="false" />
-            <element signature="e#177457#177458#0" expanded="false" />
-            <element signature="e#177496#177497#0" expanded="false" />
-            <element signature="e#177551#177552#0" expanded="false" />
-            <element signature="e#177591#177592#0" expanded="false" />
-            <element signature="e#178082#178083#0" expanded="false" />
-            <element signature="e#178121#178122#0" expanded="false" />
-            <element signature="e#178785#178786#0" expanded="false" />
-            <element signature="e#178832#178833#0" expanded="false" />
-            <element signature="e#178897#178898#0" expanded="false" />
-            <element signature="e#178976#178977#0" expanded="false" />
-            <element signature="e#179525#179526#0" expanded="false" />
-            <element signature="e#179566#179567#0" expanded="false" />
-            <element signature="e#224394#224395#0" expanded="false" />
-            <element signature="e#224447#224448#0" expanded="false" />
-            <element signature="e#225606#225607#0" expanded="false" />
-            <element signature="e#225659#225660#0" expanded="false" />
-            <element signature="e#226830#226831#0" expanded="false" />
-            <element signature="e#226883#226884#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1370,9 +1423,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1381,14 +1432,16 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
           <folding>
-            <element signature="e#405#406#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#852#858#0" expanded="true" />
-            <element signature="e#1659#1660#0" expanded="true" />
-            <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#1729#1730#0" expanded="true" />
-            <element signature="e#1759#1760#0" expanded="true" />
-            <element signature="e#3411#3428#0" expanded="true" />
+            <element signature="docComment;method#setDebugMode#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#buildModels#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#buildModels#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#buildOverallModal#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getModles#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#classify#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getPDFVal#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getClassMap#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#getClassMap#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#printLine#0;class#ClassificationEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1397,12 +1450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-          <folding>
-            <element signature="e#1660#1661#0" expanded="true" />
-            <element signature="e#1680#1681#0" expanded="true" />
-            <element signature="e#1781#1782#0" expanded="true" />
-            <element signature="e#1802#1803#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1413,101 +1460,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/stream/DoubleStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5185184">
-          <caret line="565" column="49" selection-start-line="565" selection-start-column="42" selection-end-line="565" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5014" column="30" selection-start-line="5014" selection-start-column="24" selection-end-line="5014" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#227755#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#3370#3371#0" expanded="false" />
-            <element signature="e#3446#3447#0" expanded="false" />
-            <element signature="e#5027#5028#0" expanded="false" />
-            <element signature="e#5098#5099#0" expanded="false" />
-            <element signature="e#6903#6904#0" expanded="false" />
-            <element signature="e#6974#6975#0" expanded="false" />
-            <element signature="e#8781#8782#0" expanded="false" />
-            <element signature="e#8852#8853#0" expanded="false" />
-            <element signature="e#10659#10660#0" expanded="false" />
-            <element signature="e#10730#10731#0" expanded="false" />
-            <element signature="e#12536#12537#0" expanded="false" />
-            <element signature="e#12595#12596#0" expanded="false" />
-            <element signature="e#14928#14929#0" expanded="false" />
-            <element signature="e#14999#15000#0" expanded="false" />
-            <element signature="e#17889#17890#0" expanded="false" />
-            <element signature="e#17960#17961#0" expanded="false" />
-            <element signature="e#84738#84739#0" expanded="false" />
-            <element signature="e#84795#84796#0" expanded="false" />
-            <element signature="e#88329#88330#0" expanded="false" />
-            <element signature="e#88386#88387#0" expanded="false" />
-            <element signature="e#91921#91922#0" expanded="false" />
-            <element signature="e#91978#91979#0" expanded="false" />
-            <element signature="e#95523#95524#0" expanded="false" />
-            <element signature="e#95580#95581#0" expanded="false" />
-            <element signature="e#99118#99119#0" expanded="false" />
-            <element signature="e#99175#99176#0" expanded="false" />
-            <element signature="e#102793#102794#0" expanded="false" />
-            <element signature="e#102850#102851#0" expanded="false" />
-            <element signature="e#107069#107070#0" expanded="false" />
-            <element signature="e#107126#107127#0" expanded="false" />
-            <element signature="e#111724#111725#0" expanded="false" />
-            <element signature="e#111781#111782#0" expanded="false" />
-            <element signature="e#177013#177014#0" expanded="false" />
-            <element signature="e#177054#177055#0" expanded="false" />
-            <element signature="e#177353#177354#0" expanded="false" />
-            <element signature="e#177410#177411#0" expanded="false" />
-            <element signature="e#177457#177458#0" expanded="false" />
-            <element signature="e#177496#177497#0" expanded="false" />
-            <element signature="e#177551#177552#0" expanded="false" />
-            <element signature="e#177591#177592#0" expanded="false" />
-            <element signature="e#178082#178083#0" expanded="false" />
-            <element signature="e#178121#178122#0" expanded="false" />
-            <element signature="e#178785#178786#0" expanded="false" />
-            <element signature="e#178832#178833#0" expanded="false" />
-            <element signature="e#178897#178898#0" expanded="false" />
-            <element signature="e#178976#178977#0" expanded="false" />
-            <element signature="e#179525#179526#0" expanded="false" />
-            <element signature="e#179566#179567#0" expanded="false" />
-            <element signature="e#224394#224395#0" expanded="false" />
-            <element signature="e#224447#224448#0" expanded="false" />
-            <element signature="e#225606#225607#0" expanded="false" />
-            <element signature="e#225659#225660#0" expanded="false" />
-            <element signature="e#226830#226831#0" expanded="false" />
-            <element signature="e#226883#226884#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/DataModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="543" column="6" selection-start-line="543" selection-start-column="6" selection-end-line="543" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/iris.data.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="138" column="24" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1515,17 +1471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="646" column="16" selection-start-line="646" selection-start-column="16" selection-end-line="646" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/JitendraDataModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1533,56 +1478,101 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.7777777">
           <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/ClassificationEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/DataModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.962963">
-          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
-          <folding>
-            <element signature="e#405#406#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#852#858#0" expanded="true" />
-            <element signature="e#1659#1660#0" expanded="true" />
-            <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#1729#1730#0" expanded="true" />
-            <element signature="e#1759#1760#0" expanded="true" />
-            <element signature="e#3411#3428#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MLMonk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="87" selection-start-line="51" selection-start-column="87" selection-end-line="51" selection-end-column="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/SanketML.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state vertical-scroll-proportion="-1.49">
+          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MachineLearningOperations.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/CosineSImilarity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="34" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
+          <caret line="2131" column="19" selection-start-line="2131" selection-start-column="19" selection-end-line="2131" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/HashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="553" column="13" selection-start-line="553" selection-start-column="13" selection-end-line="553" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/AbstractList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3318584">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/Random.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="385" column="15" selection-start-line="385" selection-start-column="15" selection-end-line="385" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/concurrent/ThreadLocalRandom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/movies.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19173" column="14" selection-start-line="19173" selection-start-column="6" selection-end-line="19173" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/Knapsack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
           <folding>
-            <element signature="e#4815#4816#0" expanded="true" />
-            <element signature="e#4841#4842#0" expanded="true" />
-            <element signature="e#4893#4894#0" expanded="true" />
-            <element signature="e#4921#4922#0" expanded="true" />
-            <element signature="method#getCostFunction#0;class#MachineLearningOperations#0" expanded="false" />
-            <element signature="method#alreadyPresent#0;class#MachineLearningOperations#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/NeuralNetworks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="class#Neuron#0;class#NeuralNetworks#0" expanded="false" />
+            <element signature="e#4402#4403#0" expanded="false" />
+            <element signature="e#4469#4470#0" expanded="false" />
+            <element signature="method#computeInputToNeuron#0;class#NeuralNetworks#0" expanded="false" />
+            <element signature="method#computeInputToNeuron#1;class#NeuralNetworks#0" expanded="false" />
+            <element signature="method#computeErrorsOfOutputNeuron#0;class#NeuralNetworks#0" expanded="false" />
+            <element signature="method#computeErrorsOfHiddenNeuron#0;class#NeuralNetworks#0" expanded="false" />
+            <element signature="method#computeNewWeightsForOutputNeuron#0;class#NeuralNetworks#0" expanded="false" />
+            <element signature="method#computeNewWeightsForHiddenNeuron#0;class#NeuralNetworks#0" expanded="false" />
+            <element signature="method#printOutputValues#0;class#NeuralNetworks#0" expanded="false" />
+            <element signature="method#computeForwardPass#0;class#NeuralNetworks#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1590,42 +1580,241 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/Data.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <caret line="56" column="56" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="56" />
+          <folding>
+            <element signature="e#1660#1661#0" expanded="false" />
+            <element signature="e#1680#1681#0" expanded="false" />
+            <element signature="e#1723#1724#0" expanded="false" />
+            <element signature="e#1750#1751#0" expanded="false" />
+            <element signature="e#1781#1782#0" expanded="false" />
+            <element signature="e#1802#1803#0" expanded="false" />
+            <element signature="e#1845#1846#0" expanded="false" />
+            <element signature="e#1874#1875#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/stream/DoubleStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.6666665">
+          <caret line="321" column="13" selection-start-line="321" selection-start-column="13" selection-end-line="321" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/Arrays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2749" column="26" selection-start-line="2749" selection-start-column="26" selection-end-line="2749" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neuralNetworkOutput.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1451" column="26" selection-start-line="1451" selection-start-column="26" selection-end-line="1451" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#54151#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#6252#6253#0" expanded="false" />
+            <element signature="e#6320#6321#0" expanded="false" />
+            <element signature="e#10189#10190#0" expanded="false" />
+            <element signature="e#10216#10217#0" expanded="false" />
+            <element signature="e#10398#10399#0" expanded="false" />
+            <element signature="e#10430#10431#0" expanded="false" />
+            <element signature="e#10907#10908#0" expanded="false" />
+            <element signature="e#10945#10946#0" expanded="false" />
+            <element signature="e#13541#13542#0" expanded="false" />
+            <element signature="e#13596#13597#0" expanded="false" />
+            <element signature="e#15414#15415#0" expanded="false" />
+            <element signature="e#15459#15460#0" expanded="false" />
+            <element signature="e#24549#24550#0" expanded="false" />
+            <element signature="e#24603#24604#0" expanded="false" />
+            <element signature="e#30347#30348#0" expanded="false" />
+            <element signature="e#30384#30385#0" expanded="false" />
+            <element signature="e#30684#30685#0" expanded="false" />
+            <element signature="e#30716#30717#0" expanded="false" />
+            <element signature="e#31041#31042#0" expanded="false" />
+            <element signature="e#31086#31087#0" expanded="false" />
+            <element signature="e#33262#33263#0" expanded="false" />
+            <element signature="e#33304#33305#0" expanded="false" />
+            <element signature="e#33338#33339#0" expanded="false" />
+            <element signature="e#33375#33376#0" expanded="false" />
+            <element signature="e#33413#33414#0" expanded="false" />
+            <element signature="e#33454#33455#0" expanded="false" />
+            <element signature="e#38943#38944#0" expanded="false" />
+            <element signature="e#38994#38995#0" expanded="false" />
+            <element signature="e#39436#39437#0" expanded="false" />
+            <element signature="e#39481#39482#0" expanded="false" />
+            <element signature="e#39886#39887#0" expanded="false" />
+            <element signature="e#39960#39961#0" expanded="false" />
+            <element signature="e#40600#40601#0" expanded="false" />
+            <element signature="e#40658#40659#0" expanded="false" />
+            <element signature="e#42227#42228#0" expanded="false" />
+            <element signature="e#42280#42281#0" expanded="false" />
+            <element signature="e#42326#42327#0" expanded="false" />
+            <element signature="e#42383#42384#0" expanded="false" />
+            <element signature="e#44775#44776#0" expanded="false" />
+            <element signature="e#44842#44843#0" expanded="false" />
+            <element signature="e#46390#46391#0" expanded="false" />
+            <element signature="e#46455#46456#0" expanded="false" />
+            <element signature="e#51499#51500#0" expanded="false" />
+            <element signature="e#51557#51558#0" expanded="false" />
+            <element signature="e#51597#51598#0" expanded="false" />
+            <element signature="e#51690#51691#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/ASCIICaseInsensitiveComparator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34155598">
+          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/Comparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/JitendraDataModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6493506">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/SanketML.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MLMonk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="69" selection-start-line="43" selection-start-column="69" selection-end-line="43" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MachineLearningOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="237" column="53" selection-start-line="237" selection-start-column="53" selection-end-line="237" selection-end-column="53" />
+          <folding>
+            <element signature="method#loadReducedData#0;class#MachineLearningOperations#0" expanded="false" />
+            <element signature="method#getCostFunction#0;class#MachineLearningOperations#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/Classifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/ClassificationEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
+          <folding>
+            <element signature="docComment;method#setDebugMode#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#buildModels#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#buildModels#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#buildOverallModal#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getModles#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#classify#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getPDFVal#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="docComment;method#getClassMap#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#getClassMap#0;class#ClassificationEngine#0" expanded="false" />
+            <element signature="method#printLine#0;class#ClassificationEngine#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/JitendraClassifier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2222223">
-          <caret line="4" column="61" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="25" selection-start-line="146" selection-start-column="25" selection-end-line="146" selection-end-column="25" />
+          <folding>
+            <element signature="method#calculateDistance#0;class#JitendraClassifier#0" expanded="false" />
+            <element signature="method#calculateCovarianceBetweenFields#0;class#JitendraClassifier#0" expanded="false" />
+            <element signature="method#getAccuracy#0;class#JitendraClassifier#0" expanded="false" />
+            <element signature="method#getSortedTree#0;class#JitendraClassifier#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/python-understanding-machine-learning/4-python-understanding-machine-learning-m4-exercise-files/Pima-Prediction.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/python-understanding-machine-learning/6-python-understanding-machine-learning-m6-exercise-files/Pima-Prediction.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/MovieRecommendationEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="215" column="28" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/CosineSImilarity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/iris.data.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="44" column="15" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/JitendraKMeansClustering.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <caret line="62" column="23" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ennate/egen/solutions/sml/domain/ClusteringEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3697916">
-          <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/egen/solutions/ennate/egen/solutions/sml/driver/GeneralizedNeuralNetworks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2067988">
+          <caret line="280" column="24" selection-start-line="280" selection-start-column="24" selection-end-line="280" selection-end-column="24" />
+          <folding>
+            <element signature="class#Neuron#0;class#GeneralizedNeuralNetworks#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

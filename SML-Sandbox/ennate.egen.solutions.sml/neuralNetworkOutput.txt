@@ -1,0 +1,8 @@
+"The assumed binary representation for classes are as follows:" +
+                "Iris-setosa : 001, Iris-verisicolor: 010, Iris-virginica: 110"
+The input at the point of termination are 6.9 3.1 5.1 2.3 
+The target output is 1.0 1.0 0.0 
+The actual output is 0.3556004773821043 0.7488095248793981 0.2511904974847909 
+The error is 0.27072203278407114
+The hidden neurons at the point of termination are as followsNeuron: Input weights are 1.3430292487036193, 1.5296143263009316, 0.9331406885100881, 0.5124572428710095, output is 0.9999999982102457 Net input is 20.141187409249405 Bias is 0.19481200619071615 Neuron: Input weights are 1.83E-322, 1.83E-322, 1.83E-322, 1.83E-322, output is 0.7167533732070343 Net input is 0.9284138201076964 Bias is 0.9284138201076964 
+The output neurons at the point of termination are as followsNeuron: Input weights are -1.2115631361780552, -0.0026607022358861865, output is 0.3556004773821043 Net input is -0.5945110643779116 Bias is 0.7977777442411084 Neuron: Input weights are -0.13029903605718895, 1.0544326078269122, output is 0.7488095248793981 Net input is 1.0922731289123568 Bias is 0.524020056648774 Neuron: Input weights are -0.3107418852287788, -2.051906669357453, output is 0.2511904974847909 Net input is -1.0922730100132436 Bias is 0.6319638725561159 
