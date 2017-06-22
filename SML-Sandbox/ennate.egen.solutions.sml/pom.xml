@@ -40,5 +40,10 @@
 			<artifactId>jama</artifactId>
 			<version>1.0.3</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.geographiclib</groupId>
+			<artifactId>GeographicLib-Java</artifactId>
+			<version>1.42</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -1,18 +1,22 @@
 package egen.solutions.ennate.egen.solutions.sml.driver;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
-
 import ennate.egen.solutions.sml.domain.Classifier;
 import ennate.egen.solutions.sml.domain.ClusteringEngine;
 import ennate.egen.solutions.sml.domain.ClusteringEngine.ClusteredPoints;
 import ennate.egen.solutions.sml.domain.Data;
 import ennate.egen.solutions.sml.domain.Result;
+import net.sf.geographiclib.Geodesic;
+import net.sf.geographiclib.GeodesicData;
+import net.sf.geographiclib.GeodesicMask;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class MachineLearningOperations<T extends Classifier> {
 	private ArrayList<Data>		trainingSet;
@@ -87,6 +91,22 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 		}
 
 		br.close();
+	}
+
+	public void loadData(List<String> contentList, String delimiter, int numberOfFields) throws IOException {
+		/*
+		 * Load the file
+		 */
+		totalDataset = new ArrayList<>();
+
+		for(String line : contentList) {
+			try {
+				Data temp = new Data(line, delimiter, numberOfFields);
+				totalDataset.add(temp);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	/**
@@ -192,5 +212,55 @@ public abstract class MachineLearningOperations<T extends Classifier> {
 			}
 		}
 		return present;
+	}
+
+	public Double calculateGeodesicDistance() {
+		Double minLatitude = getMinValue(0);
+		Double minLongitude = getMinValue(1);
+
+		Double maxLatitude = getMaxValue(0);
+		Double maxLongitude = getMaxValue(1);
+
+		GeodesicData distance = Geodesic.WGS84.Inverse(minLatitude, minLongitude, maxLatitude, maxLongitude,
+				GeodesicMask.DISTANCE);
+		return distance.s12 / 1000;
+	}
+
+	private Double getMinValue(int fieldNumber) {
+		Double min = Double.MAX_VALUE;
+
+		Data dataCheck = totalDataset.get(0);
+		if(fieldNumber >= dataCheck.getFields().length) {
+			throw new RuntimeException("Field number cannot exceed the total number of fields");
+		}
+
+		for (Data data : totalDataset) {
+			Double[] dataFields = data.getFields();
+
+			if(min > dataFields[fieldNumber]) {
+				min = dataFields[fieldNumber];
+			}
+		}
+
+		return min;
+	}
+
+	private Double getMaxValue(int fieldNumber) {
+		Double max = Double.MIN_VALUE;
+
+		Data dataCheck = totalDataset.get(0);
+		if(fieldNumber >= dataCheck.getFields().length) {
+			throw new RuntimeException("Field number cannot exceed the total number of fields");
+		}
+
+		for (Data data : totalDataset) {
+			Double[] dataFields = data.getFields();
+
+			if(max < dataFields[fieldNumber]) {
+				max = dataFields[fieldNumber];
+			}
+		}
+
+		return max;
 	}
 }

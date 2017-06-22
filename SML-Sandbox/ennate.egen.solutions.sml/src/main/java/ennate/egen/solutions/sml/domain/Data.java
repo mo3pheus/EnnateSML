@@ -13,11 +13,11 @@ public class Data implements Cloneable {
 		/*
 		 * Sanity check
 		 */
-		if (parts.length != numberOfFields + 1) {
-			System.out.println(
-					"Corrupted string passed in" + content + " expected fields length = " + numberOfFields);
-			return;
-		}
+//		if (parts.length != numberOfFields + 1) {
+//			System.out.println(
+//					"Corrupted string passed in" + content + " expected fields length = " + numberOfFields);
+//			return;
+//		}
 
 		fields = new Double[numberOfFields];
 		int i;
