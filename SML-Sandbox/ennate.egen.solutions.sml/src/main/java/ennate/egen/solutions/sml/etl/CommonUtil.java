@@ -10,7 +10,7 @@ package ennate.egen.solutions.sml.etl;
 public class CommonUtil {
 
 	/**
-	 * prints elements in array on a line delimited by " , "
+	 * prints elements in a one dimensional array on a line delimited by " , "
 	 * @param double array
 	 */
 	public static void printArray(double[] arrayValues) {
@@ -30,5 +30,4 @@ public class CommonUtil {
 			throw new NullPointerException();
 		}
 	}
-
 }

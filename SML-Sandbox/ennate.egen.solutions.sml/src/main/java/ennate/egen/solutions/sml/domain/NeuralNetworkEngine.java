@@ -15,22 +15,31 @@ public class NeuralNetworkEngine {
 	
 	private double[] inputNodes;
 	private double[] hiddenNodes;
+	private double[] hiddenNodesDerivative;
 	private double[] outputNodes;
+	private double[] outputNodesDerivative;
+	private double[] errorVector;
+	private double errorMagnitude;
 	private double[] biases;
 	private double[][] inputToHiddenWeights;
 	private double[][] hiddenToOutputWeights;
 	private Random random;
 	private Method activationFunction;
+	private Method activationFunctionDerivate;
+	private double[] expectedOutput;
 
-	public NeuralNetworkEngine(int noOfInputNodes, int noOfHiddenNodes, int noOfOutputNodes, Method activationFunction) {
+	public NeuralNetworkEngine(int noOfInputNodes, int noOfHiddenNodes, int noOfOutputNodes, Method activationFunction, Method activationFunctionDerivate) {
 		inputNodes = new double[noOfInputNodes];
 		hiddenNodes = new double[noOfHiddenNodes];
+		hiddenNodesDerivative = new double[noOfHiddenNodes];
 		outputNodes = new double[noOfOutputNodes];
+		outputNodesDerivative = new double[noOfOutputNodes];
 		biases = new double[2];
 		inputToHiddenWeights = new double[noOfInputNodes][noOfHiddenNodes];
 		hiddenToOutputWeights = new double[noOfHiddenNodes][noOfOutputNodes];
 		random = new Random();
 		this.activationFunction = activationFunction;
+		this.activationFunctionDerivate = activationFunctionDerivate;
 		
 		initialize();
 	}
@@ -69,7 +78,8 @@ public class NeuralNetworkEngine {
 	 */
 	public double[] forwardPass(double[] inputNodeValues) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Object[] parameters = new Object[1];
-        
+		errorMagnitude = 0;
+		
 		for (int i = 0; i < hiddenNodes.length; i++) {
 			double value = 0.0d;
 			for (int j = 0; j < inputNodes.length; j++) {
@@ -78,6 +88,7 @@ public class NeuralNetworkEngine {
 			value += biases[0];
 			parameters[0] = value;
 			hiddenNodes[i] = (Double) activationFunction.invoke(null, parameters);
+			hiddenNodesDerivative[i] = (Double) activationFunctionDerivate.invoke(null, parameters);
 		}
 		
 		for (int i = 0; i < outputNodes.length; i++) {
@@ -87,9 +98,20 @@ public class NeuralNetworkEngine {
 			}
 			value += biases[1];
 			parameters[0] = value;
-			outputNodes[i] = (Double) activationFunction.invoke(null, parameters);;
+			outputNodes[i] = (Double) activationFunction.invoke(null, parameters);
+			outputNodesDerivative[i] = (Double) activationFunctionDerivate.invoke(null, parameters);
+			errorVector[i] = expectedOutput[i] - outputNodes[i];
+			errorMagnitude += 0.5*errorVector[i]*errorVector[i]; 
 		}
+		
 		return outputNodes;
+	}
+	
+	public void adjustWeights() {
+		for (int j = 0; j < hiddenNodes.length; j++) {
+			int i = 0;
+			double value = hiddenNodes[j] * hiddenToOutputWeights[j][i];
+		}
 	}
 	
 	/**

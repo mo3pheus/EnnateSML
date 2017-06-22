@@ -24,13 +24,12 @@ public class NeuralNetworkDriver {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		
-		
 		try {
 			Class[] parameterTypes = new Class[1];
 	        parameterTypes[0] = double.class;
-			Method sigmoidFunction = ActivationFunctions.class.getMethod("evaluateSigmoid", parameterTypes);
-			NeuralNetworkEngine nnEngine = new NeuralNetworkEngine(2, 2, 2, sigmoidFunction);
+			Method logisticSigmoidFunction = ActivationFunctions.class.getMethod("evaluateLogisticSigmoid", parameterTypes);
+			Method logisticSigmoidFunctionDerivative = ActivationFunctions.class.getMethod("evaluateLogisticSigmoidDerivative", parameterTypes);
+			NeuralNetworkEngine nnEngine = new NeuralNetworkEngine(2, 2, 2, logisticSigmoidFunction, logisticSigmoidFunctionDerivative);
 			double[] inputValues = new double[]{0.05, 0.10};
 			double[][] inputToHiddenWeights = new double[][]{{0.15, 0.20}, {0.25, 0.30}};
 			double[][] hiddenToOutputWeights = new double[][]{{0.4, 0.45}, {0.5, 0.55}};
