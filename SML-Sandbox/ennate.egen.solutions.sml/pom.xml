@@ -4,7 +4,7 @@
 
 	<groupId>egen.solutions</groupId>
 	<artifactId>ennate.egen.solutions.sml</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>ennate.egen.solutions.sml</name>

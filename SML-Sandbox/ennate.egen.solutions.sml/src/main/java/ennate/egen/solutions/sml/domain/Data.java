@@ -12,7 +12,7 @@ public class Data {
 		/*
 		 * Sanity check
 		 */
-		if (parts.length != numberOfFields + 1) {
+		if (parts.length != numberOfFields) {
 			System.out.println(
 					"Corrupted string passed in" + content + " expected fields length = " + numberOfFields);
 			return;
