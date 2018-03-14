@@ -11,6 +11,4 @@ is held in Data as Double[] fields = {5.0d,3.6d,1.4d,0.2d}; numFields = 4; and c
 
 All operations that follow operate on this basic building block. 
 
-Please email any questions you have to skorgaonkar@egen.solutions.
-
-Copyright (c) 2017 Egen Solutions.
+Please email any questions to sanket.korgaonkar@gmail.com
